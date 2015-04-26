@@ -110,4 +110,3 @@ if __FILE__ == $PROGRAM_NAME
     RPNCalculator.evaluate
   end
 end
-

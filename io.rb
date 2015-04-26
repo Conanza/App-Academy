@@ -1,6 +1,7 @@
 def guesser
   computer_number = rand(100) + 1
   guesses = 0
+
   loop do
     guesses += 1
     puts "Guess the number:"
@@ -21,15 +22,6 @@ def outcome(computer_number, guess)
       return guess
     end
 end
-
-# def fileshuffler
-#   puts "What's the filename?"
-#   filename = gets.chomp
-
-#   File.open('output.txt', 'w') do |f|
-#     f.puts(File.readlines(filename).shuffle)
-#   end
-# end
 
 def shuffle_file(filename)
   base = File.basename(filename, ".*")

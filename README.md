@@ -1,4 +1,4 @@
-# w1d2 app academy exercises
+# W1D2
 
 exercises on methods,
 iteration,

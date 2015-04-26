@@ -8,10 +8,11 @@ def super_print(string, options = {})
 end
 
 if $PROGRAM_NAME = __FILE__
-super_print("Hello")                                    #=> "Hello"
-puts
-super_print("Hello", :times => 3)                       #=> "Hello" 3x
-puts
-super_print("Hello", :upcase => true)                   #=> "HELLO"
-puts
-super_print("Hello", :upcase => true, :reverse => true) #=> "OLLEH"
+  super_print("Hello")                                    #=> "Hello"
+  puts
+  super_print("Hello", :times => 3)                       #=> "Hello" 3x
+  puts
+  super_print("Hello", :upcase => true)                   #=> "HELLO"
+  puts
+  super_print("Hello", :upcase => true, :reverse => true) #=> "OLLEH"
+end

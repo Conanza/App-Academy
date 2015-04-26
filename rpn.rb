@@ -1,59 +1,24 @@
-# class Rpn
-#   OPERATIONS = %w(+ - / *)
-
-#   def initialize
-#     @stack = []
-#   end
-
-#   def push(input)
-#     @stack << input
-#     evaluate
-#   end
-
-#   def exec(input)
-#     input = OPERATIONS.include?(input) ? input.to_sym : Float(input)
-#     push(input)
-#   end
-
-#   def evaluate
-#     return if @stack.last.is_a?(Numeric)
-
-#     operator = @stack.pop
-#     el1, el2 = @stack.pop, @stack.pop
-#     @stack << el2.send(operator, el1)
-#   end
-
-#   def cmd_input
-#     puts "Enter input"
-#     input = gets.chomp
-#     exec(input)
-
-#     cmd_input
-#   end
-
-#   def to_s
-#     @stack.last.to_s
-#   end
-# end
-
-# if $PROGRAM_NAME == __FILE__
-#   calculator = Rpn.new
-#   filename = ARGV[0]
-#   if filename
-#     File.read(filename).split.each { |arg| calculator.exec arg }
-#     puts calculator
-#   else
-#     calculator.cmd_input
-#   end
-# end
-
 class RPNCalculator
   def initialize
     @stack = []
   end
 
-  def push(number)
-    @stack << number
+  def self.evaluate
+    calc = RPNCalculator.new
+
+    loop do 
+      user_input = calc.get_input
+      if user_input.is_a?(Numeric)
+        calc.push(user_input)
+      elsif user_input.is_a?(Symbol)
+        calc.exec_op(user_input)
+      else
+        calc.value
+        break
+      end
+
+      calc.display_stack
+    end
   end
 
   def exec_op(operation)
@@ -66,63 +31,82 @@ class RPNCalculator
     when :/ then divide
     else raise "No operation #{operation}"
     end
-    
-    puts @stack.last
   end
 
-  def self.evaluate
-    calc = RPNCalculator.new
+  def divide
+    @stack << (1 / @stack.pop.to_f) * @stack.pop
+  end
 
-    loop do 
+  def display_stack
+    p @stack
+  end
+
+  def get_input
+    input = nil
+
+    until input
       puts "Enter input: "
-      user_input = calc.input(gets.chomp)
-      if user_input.is_a?(Numeric)
-        calc.push(user_input)
-      elsif user_input.is_a?(Symbol)
-        calc.exec_op(user_input)
-      else
-        calc.value
-        break
-      end
+      input = valid_input?(gets.chomp)
     end
+
+    input
+  end
+
+  def valid_input?(input)
+    user_input = nil
+
+    if input == ""
+      user_input = ""
+    elsif operations?(input)
+      user_input = input.to_sym
+    elsif number?(input)
+      user_input = Float(input)
+    else
+      puts "Enter valid input"
+    end
+
+    user_input
+  end
+
+  def operations?(input)
+    ["+", "-", "/", "*"].include?(input)
+  end
+
+  def number?(input)
+    input.split.all? { |digit| digit =~ /[0-9]/ }
+  end
+
+  def minus
+    @stack << -@stack.pop + @stack.pop
+  end
+
+  def plus
+    @stack << @stack.pop + @stack.pop
+  end
+
+  def push(number)
+    @stack << number
+  end
+
+  def times
+    @stack << @stack.pop * @stack.pop
   end
 
   def value
     case @stack.count
-    when 1 then @stack.pop
+    when 1 then p @stack.pop
     when 0 then raise "There are no operands"
-    else "There are still operands left"
+    else raise "There are still operands left"
     end
   end
-
-  def input(item)
-    %w(+ - * / =).include?(item) ? item.to_sym : Float(item)
-  end
-
-  private
-
-    def plus
-      @stack << @stack.pop + @stack.pop
-    end
-
-    def minus
-      @stack << -@stack.pop + @stack.pop
-    end
-
-    def times
-      @stack << @stack.pop * @stack.pop
-    end
-
-    def divide
-      @stack << (1 / @stack.pop.to_f) * @stack.pop
-    end
 end
 
-# if __FILE__ == $PROGRAM_NAME
+if __FILE__ == $PROGRAM_NAME
 #   if ARGV[0]
 #     puts RPNCalculator.evaluate(ARGV[0])
 #   else
 #     puts RPNCalculator.evaluate($stdin)
 #   end
-# end
+  RPNCalculator.evaluate
+end
 

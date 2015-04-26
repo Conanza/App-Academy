@@ -2,7 +2,7 @@ def rps(choice)
   choices = %w(Rock Paper Scissors)
   computer_choice = choices.sample
 
-  "Comp shows #{computer_choice}, #{rps_outcome(choice, computer_choice)}"
+  "Comp shows #{computer_choice}, you #{rps_outcome(choice, computer_choice)}"
 end
 
 def rps_outcome(our_choice, computer_choice)
@@ -39,10 +39,12 @@ def pair_drinks(alcohols, sodas)
   pairings
 end
 
-# 20.times { p rps("Rock") }
+if $PROGRAM_NAME == __FILE__
+  20.times { p rps("Rock") }
 
-p remix([
-  ["whiskey", "coke"],
-  ["gin", "tonic"],
-  ["vodka", "cranberry"]
-])
+  p remix([
+    ["whiskey", "coke"],
+    ["gin", "tonic"],
+    ["vodka", "cranberry"]
+  ])
+end

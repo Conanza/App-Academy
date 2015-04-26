@@ -1,34 +1,67 @@
-def towers_of_hanoi(towers)
-  p towers
-  finished = false
-  until finished
-    #get from user
-    puts "What tower to move from? 0 through #{towers.length - 1}"
-    from = gets.to_i
-    puts "Where to? 0 through #{towers.length - 1}"
-    to = gets.to_i
-
-    if !towers[to].first.nil? && towers[to].first < towers[from].first
-      puts "Invalid move. Try another selection."
-      next
-    end
-
-    towers[to].unshift(towers[from].shift)
-    p towers
-
-    #finished?
-    if (towers.count { |tower| tower.empty? } == towers.length - 1)
-      last = towers.select { |tower| !tower.empty? }
-      finished = true if last == last.sort
-    end
+class TowersOfHanoi
+  def self.build_towers(n)
+    [(1..n).to_a, [], []]
   end
-  puts "you win!"
+
+  attr_reader :towers
+
+  def initialize(num_discs)
+    @towers = self.class.build_towers(num_discs)
+  end
+
+  def play
+    until won? 
+      display
+      move_from, move_to = get_move(:from), get_move(:to)
+
+      make_move(move_from, move_to)
+    end
+
+    display
+    puts "Congrats!! You made it"
+  end
+
+  private
+
+    def display
+      p towers
+    end
+
+    def get_move(arg)
+      puts "Which position do you want to move a disc #{arg}? Choose 0, 1, or 2: "
+      
+      begin
+        Integer(gets)
+      rescue
+        puts "Please select a number between 0-2"
+        retry
+      end
+    end
+
+    def make_move(from, to)
+      if valid_move?(from, to)
+        towers[to].unshift(towers[from].shift)
+      else
+        puts "---TRY ANOTHER MOVE---"
+      end
+    end
+
+    def valid_move?(from, to)
+      return false unless from.between?(0, 2)
+      return false unless to.between?(0,2)
+      return false if from == to
+      return false if towers[from].empty?
+      return true if towers[to].empty? || towers[from].first < towers[to].first
+    end
+
+    def won?
+      @towers.first.empty? && @towers.drop(1).any? { |tower| tower.empty? }
+    end
 end
 
-towers = [
-  [1,2,3,4],
-  [],
-  []
-]
+if $PROGRAM_NAME == __FILE__
+  puts "How many discs would you like to play with?"
+  game = TowersOfHanoi.new(Integer(gets))
+  game.play
+end
 
-towers_of_hanoi(towers)

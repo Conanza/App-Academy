@@ -1,4 +1,4 @@
-# w1d4 a/A exercises
+# w1d4
 
 Blocks,
 Recursion

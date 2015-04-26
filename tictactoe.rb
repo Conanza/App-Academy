@@ -1,9 +1,19 @@
 class Board
-  attr_accessor :grid
+  attr_accessor :grid, :winner
 
   def initialize
     @grid = Array.new(3) { Array.new(3) }
-    @three_in_a_row = nil
+    @winner = nil
+  end
+
+  def [](pos)
+    row, col = pos.first, pos.last
+    @grid[row][col]
+  end
+
+  def []=(pos, mark)
+    row, col = pos.first, pos.last
+    @grid[row][col] = mark
   end
 
   def won?
@@ -28,36 +38,33 @@ class Board
 
   def all_same?(array)
     if array.all? { |value| value == :o }
-      @three_in_a_row = :o
+      @winner = :o
     elsif array.all? { |value| value == :x }
-      @three_in_a_row = :x
+      @winner = :x
     end
   end
 
-  def winner
-    @three_in_a_row
-  end
-
   def empty?(pos)
-    !@grid[pos.first][pos.last]
+    !self[pos]
   end
 
   def place_mark(pos, mark)
-    valid_move?(pos, mark) ? @grid[pos.first][pos.last] = mark : false
+    valid_move?(pos, mark) ? self[pos] = mark : false
   end
 
   def valid_move?(pos, mark)
-    return false unless pos.all? { |pos| pos.between?(0, grid.length - 1) }
-    @grid[pos.first][pos.last].nil?
+    return false unless pos.all? { |coord| coord.between?(0, grid.length - 1) }
+    
+    self[pos].nil?
   end
 
   def delete_mark(pos)
-    grid[pos.first][pos.last] = nil
+    self[pos] = nil
   end
 
   def render
     grid.each do |line|
-      p line.map { |char| mapping(char) }
+      p line.map { |char| mapping(char) }.join(" | ")
     end
   end
 
@@ -142,11 +149,13 @@ class ComputerPlayer < Player
     until board.place_mark([coords.sample, coords.sample], sym)
     end
   end
-
 end
 
-symbol = :x
-other_symbol = symbol == :x ? :o : :x
-me = HumanPlayer.new(symbol)
-com = ComputerPlayer.new(other_symbol)
-game = Game.new(me, com)
+if $PROGRAM_NAME == __FILE__
+  symbol = :x
+  other_symbol = symbol == :x ? :o : :x
+  me = HumanPlayer.new(symbol)
+  com = ComputerPlayer.new(other_symbol)
+  game = Game.new(me, com)
+  game.play
+end

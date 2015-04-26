@@ -27,7 +27,6 @@ class Student
     @courses.each { |course| cl[course.dept] += course.credits }
     cl
   end
-
 end
 
 class Course

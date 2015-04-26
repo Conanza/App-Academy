@@ -1,17 +1,3 @@
-# def rps()
-#   moves = ["rock", "paper", "scissors"]
-#   my_move = move.downcase
-#   comp_move = (0..2).to_a.sample
-#   comp_string = moves[comp_move].capitalize
-#   if my_move == (moves[comp_move - 1])
-#     return "#{comp_string}, Lose"
-#   elsif my_move == (moves[comp_move])
-#     return "#{comp_string}, Draw"
-#   else
-#     return "#{comp_string}, Win!"
-#   end
-# end
-
 def rps(choice)
   choices = %w(Rock Paper Scissors)
   computer_choice = choices.sample

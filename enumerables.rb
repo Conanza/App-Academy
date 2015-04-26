@@ -16,9 +16,7 @@ class Array
   end
 
   def my_each(&block)
-    length.times do |index|
-      block.call(self[index])
-    end
+    length.times { |index| block.call(self[index]) }
     
     self
   end

@@ -18,6 +18,7 @@ CONVERSIONS = {
 }
 
 def num_to_s(num, base)
+  return "0" if num.zero?
   new_num = ""
   
   power = 0
@@ -33,6 +34,7 @@ def num_to_s(num, base)
 end
 
 if $PROGRAM_NAME == __FILE__
+  p num_to_s(0, 10) == "0"
   p num_to_s(5, 10) == "5"
   p num_to_s(5, 2)  == "101"
   p num_to_s(5, 16) == "5"

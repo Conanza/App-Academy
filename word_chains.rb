@@ -7,8 +7,6 @@ class WordChainer
     @dictionary = Set.new(File.readlines(dictionary_file).map(&:chomp))
   end
 
-
-
   def run(source, target)
     @current_words, @all_seen_words = [source], { source => nil }
 
@@ -16,7 +14,7 @@ class WordChainer
       explore_current_words
     end
 
-    build_path(target).drop(1).join(" > ")
+    build_path(target)
   end
   
   private
@@ -34,7 +32,6 @@ class WordChainer
       false
     end
 
-    # returns all words in the dictionary one letter different than word
     def adjacent_words(word)
       @dictionary.select { |dict_word| adjacent_word?(word, dict_word) }
     end
@@ -44,7 +41,7 @@ class WordChainer
 
       path.unshift(@all_seen_words[path.first]) until path.first.nil?
 
-      path
+      path.drop(1).join(" > ")
     end
     
     def explore_current_words

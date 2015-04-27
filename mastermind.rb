@@ -129,8 +129,7 @@ class Game
     end
 end
 
-game = Game.new_game
-game.run_game
-# puts game.valid_entry?("rgby")
-# puts game.valid_entry?("ajfksk")
-# puts game.valid_entry?("zkdg")
+if $PROGRAM_NAME == __FILE__
+  game = Game.new_game
+  game.run_game
+end

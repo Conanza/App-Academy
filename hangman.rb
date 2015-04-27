@@ -161,7 +161,7 @@ end
 
 
 
-checker = HumanPlayer.new("human")
-guesser = ComputerPlayer.new
+guesser = HumanPlayer.new("human")
+checker = ComputerPlayer.new
 game = Hangman.new(guesser, checker)
 game.run

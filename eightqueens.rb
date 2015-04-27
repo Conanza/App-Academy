@@ -74,7 +74,7 @@ class EightQueens
       new_pos1 = [diag_positions.first[0] - 1, diag_positions.first[1] - 1]
       new_pos2 = [diag_positions.last[0] + 1, diag_positions.last[1] + 1]
     
-      break unless on_board?(new_pos1) && on_board?(new_pos2)
+      break unless on_board?(new_pos1) || on_board?(new_pos2)
 
       diag_positions.unshift(new_pos1) if on_board?(new_pos1)
       diag_positions << new_pos2 if on_board?(new_pos2)
@@ -90,7 +90,7 @@ class EightQueens
       new_pos1 = [diag_positions.first[0] + 1, diag_positions.first[1] - 1]
       new_pos2 = [diag_positions.last[0] - 1, diag_positions.last[1] + 1]
     
-      break unless on_board?(new_pos1) && on_board?(new_pos2)
+      break unless on_board?(new_pos1) || on_board?(new_pos2)
 
       diag_positions.unshift(new_pos1) if on_board?(new_pos1)
       diag_positions << new_pos2 if on_board?(new_pos2)
@@ -100,10 +100,14 @@ class EightQueens
   end
 
   def on_board?(pos)
-    pos.first.between?(0, 7) && pos.last.between?(0,7)
+    pos.first.between?(0, 7) && pos.last.between?(0, 7)
   end
 end
 
 if $PROGRAM_NAME == __FILE__
+  # x = EightQueens.new
+  # p x.build_decreasing_diag([1,1])
+  # p x.build_increasing_diag([1,1])
+
   EightQueens.run_game
 end

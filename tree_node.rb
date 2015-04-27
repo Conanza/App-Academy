@@ -1,5 +1,5 @@
 class PolyTreeNode
-  attr_reader :parent, :children, :value
+  attr_reader :value, :parent, :children
 
   def initialize(value)
     @value, @parent, @children = value, nil, []
@@ -15,7 +15,7 @@ class PolyTreeNode
     until queue.empty?
       current_node = queue.shift
       return current_node if target_value == current_node.value
-      current_node.children.each { |child| queue << child }
+      queue += current_node.children
     end
 
     nil
@@ -25,16 +25,16 @@ class PolyTreeNode
     return self if target_value == value
 
     children.each do |child|
-      result = child.dfs(target_value)
-      return result if result
+      search = child.dfs(target_value)
+      return search if search
     end
 
     nil
   end
 
   def parent=(node)
-    parent.children.reject! { |child| child == self } unless parent.nil?
-  
+    parent.children.delete(self) unless parent.nil?
+
     @parent = node
 
     node.children << self unless node.nil? || node.children.include?(self)

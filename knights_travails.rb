@@ -21,8 +21,9 @@ class KnightPathFinder
   end
 
   def initialize(pos)
-    @visited_positions = [pos]
-    @move_tree = build_move_tree(pos)
+    @start_pos, @visited_positions = pos, [pos]
+    
+    build_move_tree
   end
 
   def new_move_positions(pos)
@@ -32,9 +33,9 @@ class KnightPathFinder
     new_moves
   end
 
-  def build_move_tree(pos)
-    root = PolyTreeNode.new(pos)
-    queue = [root]
+  def build_move_tree
+    @root = PolyTreeNode.new(@start_pos)
+    queue = [@root]
 
     until queue.empty?
       current_node = queue.shift
@@ -44,17 +45,15 @@ class KnightPathFinder
         queue << child
       end
     end
-
-    root
   end
 
   def find_path(end_pos)
-    @move_tree.bfs(end_pos).trace_path_back
+    @root.bfs(end_pos).trace_path_back
   end
 end
 
 if __FILE__ == $PROGRAM_NAME
-  knight = KnightPathFinder.new([0,0])
-  p knight.find_path([6,2])
+  knight = KnightPathFinder.new([0, 0])
   p knight.find_path([7, 6])
+  p knight.find_path([6, 2])
 end

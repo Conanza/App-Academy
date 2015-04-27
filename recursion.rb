@@ -1,24 +1,37 @@
-def range(start, finish)
-  return [] if start > finish
-  return [start] if start == finish
-  [start] + range(start + 1, finish)
-end
 
 class Array
+  def bsearch(target)
+    return nil if empty?
+
+    mid = length / 2
+    current_number = self[mid]
+    return mid if current_number == target
+
+    left_half = self[0...mid]
+    right_half = self[mid + 1..-1]
+
+    if target > current_number
+      rsearch = right_half.bsearch(target)
+      rsearch.nil? ? nil : 1 + mid + rsearch
+    else
+      left_half.bsearch(target)
+    end
+  end
+
   def recursive_sum
     return 0 if empty?
-    first + self[1..-1].recursive_sum
+
+    first + self.drop(1).recursive_sum
   end
 
   def iterative_sum
-    inject(:+)
+    inject(0, :+)
   end
 
   def deep_dup
-    new_array = []
-    each { |el| new_array << (el.is_a?(Array) ? el.deep_dup : el) }
-
-    new_array
+    dup_array = []
+    each { |el| dup_array << (el.is_a?(Array) ? el.deep_dup : el) }
+    dup_array
   end
 
   def merge_sort
@@ -31,156 +44,126 @@ class Array
   end
 
   def self.merge(array1, array2)
-    new_array = []
-    idx1, idx2 = 0, 0
-    while (idx1 < array1.length) || (idx2 < array2.length)
-      num1 = array1[idx1]
-      num2 = array2[idx2]
-
-      if idx1 >= array1.length || (num1 && num2 && num1 >= num2)
-        new_array << num2
-        idx2 += 1
-      elsif idx2 >= array2.length || (num1 && num2 && num1 < num2)
-        new_array << num1
-        idx1 += 1
+    merged = []
+    until array1.empty? && array2.empty?
+      num1, num2 = array1.first, array2.first
+      if array1.empty? 
+        merged << array2.shift
+      elsif array2.empty?
+        merged << array1.shift
+      elsif num1 <= num2 
+        merged << array1.shift
+      else
+        merged << array2.shift
       end
     end
 
-    new_array
+    merged 
   end
+
+  def subsets_rec
+    return [[]] if empty?
+
+    subset = take(length - 1)
+    smaller_subsets = subset.subsets_rec
+    
+    bigger_subsets = []
+    smaller_subsets.each do |subs|
+      bigger_subsets << subs + [last]
+    end
+
+    smaller_subsets + bigger_subsets
+  end
+
+  def subsets_iterative
+    subsets = []
+    (0..length).each do |size|
+      combination(size).each { |combo| subsets << combo }
+    end
+    subsets
+  end
+end
+
+def range(start, finish)
+  return [] if start > finish
+  return [start] if start == finish
+  [start] + range(start + 1, finish)
 end
 
 def exp1(b, exp)
-  exp.zero? ? 1 : b * exp1(b, exp - 1)
+  return 1 if exp.zero?
+
+  b * exp1(b, exp - 1)
 end
 
 def exp2(b, exp)
-  return 1 if exp == 0
+  return 1 if exp.zero?
   return b if exp == 1
-  temp = exp.even? ? exp2(b, exp / 2) : exp2(b, (exp - 1) / 2)
-  exp.even? ? temp * temp : b * temp * temp
+
+  temp = exp2(b, exp / 2)
+  if exp.even?
+    temp * temp
+  else
+    b * temp * temp
+  end
 end
 
-def fibonacci_rec(n)
-  return [1] if n == 1
-  return [1, 1] if n == 2
-  array = fibonacci_rec(n - 1)
-  array + [array[-1] + array[-2]]
-end
+def fib_iterative(n)
+  fib = [0, 1]
+  return [] if n.zero?
+  return fib[0..n - 1] if n <= 2
 
-def fibonacci_iterative(n)
-  return [1] if n == 1
-  fib = [1, 1]
-  (n - 2).times { fib << fib[-1] + fib[-2] }
+  (n - 2).times { fib << fib.last + fib[-2] }
   fib
 end
 
-def bsearch(array, target)
-  return nil if array.empty?
+def fib_rec(n)
+  return [] if n.zero?
+  return [0] if n == 1
+  return [0, 1] if n == 2
 
-  midpoint = array.length / 2
+  new_fib = fib_rec(n - 1).last + fib_rec(n - 1)[-2]
 
-  if target > array[midpoint]
-    r_search = bsearch(array[midpoint + 1..-1], target)
-    r_search.nil? ? nil : r_search + midpoint + 1
-  elsif target < array[midpoint]
-    bsearch(array[0...midpoint], target)
-  else
-    midpoint
+  fib_rec(n - 1) + [new_fib]
+end
+
+def american_make_change(total, currency)
+  change = []
+  return change if currency.empty?
+
+  num_currency = total / currency.first 
+  remainder = total % currency.first
+  num_currency.times { change << currency.first }
+
+  change + american_make_change(remainder, currency.drop(1))
+end
+
+def efficient_change(total, currency)
+  change = []
+  return change if currency.empty? || total <= 0
+
+  possible_change = []
+  currency.each do |bill|
+    next if bill > total
+    remainder = total - bill
+
+    possible_change << ([bill] + efficient_change(remainder, currency))
   end
-end
-
-def make_change(sum, units)
-  return [] if units.empty?
-
-  coin = units.shift
-  num_coins = sum / coin
-  remainder = sum % coin
-  [coin] * num_coins + make_change(remainder, units)
-end
-
-def best_change2(sum, units)
-  return [] if units.empty? || sum <= 0
-
-  candidates = []
-  units.each do |coin|
-    # coin = units[n]
-    # num_coins = sum / coin
-    next if coin > sum
-    remainder = sum - coin
-    candidates << ([coin] + best_change(remainder, units))
-  end
-
-  candidates.min_by { |change| change.length }
-end
-
-def subsets(array) 
-  return [[]] if array.empty?
   
-  subsets = []
-  (0...array.length).each do |idx|
-    dup_array = array.dup 
-    pick_single = dup_array.delete_at(idx)
+  possible_change.min_by { |change| change.length }
+end
+
+# def subsets(array) 
+#   return [[]] if array.empty?
+  
+#   subsets = []
+#   (0...array.length).each do |idx|
+#     dup_array = array.dup 
+#     pick_single = dup_array.delete_at(idx)
     
-    subsets += ([[pick_single]] + [dup_array + [pick_single]] + 
-                  subsets(dup_array)).uniq
-  end
-  # last_number = array.last
-  # shorter_array = array[0..-2]
+#     subsets += ([[pick_single]] + [dup_array + [pick_single]] + 
+#                   subsets(dup_array)).uniq
+#   end
 
-  subsets.map(&:sort).uniq
-end
-
-if __FILE__ == $PROGRAM_NAME
-  p subsets([]) # => [[]]
-  p subsets([1]) # => [[], [1]]
-  p subsets([1, 2]) # => [[], [1], [2], [1, 2]]
-  p subsets([1, 2, 3])
-            # => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
-  # p [1,5,7,3,2,8,67,1,83,1,11,678,13,71,89].merge_sort
-  # p Array.merge([2,3,51,89,7898], [20,71,444,4433])
-  # p best_change(114, [30, 10, 7, 1])
-
-  # p range(1,0)
-  # p range(2,2)
-  # p range(2,5)
-  #
-  # puts [2,4,5,6,1000].iterative_sum
-  # puts [2].iterative_sum
-  # puts [].iterative_sum
-  #
-  # puts exp1(2,3)
-  # puts exp2(3,5)
-  # puts exp2(1,0)
-  # puts exp2(5,1)
-  # puts exp2(-10, 5)
-  #
-  # robot_parts = [
-  #   ["nuts", "bolts", "washers"],
-  #   ["capacitors", "resistors", "inductors"]
-  # ]
-  #
-  # robot_parts_copy = robot_parts.deep_dup
-  #
-  # robot_parts_copy[1] << "LEDs"
-  # puts "___"
-  # p robot_parts
-  # p robot_parts_copy
-  #
-  # p fibonacci_rec(1)
-  # p fibonacci_rec(2)
-  # p fibonacci_rec(10)
-  #
-  # p fibonacci_iterative(1)
-  # p fibonacci_iterative(2)
-  # p fibonacci_iterative(10)
-  #
-  # puts "\nbsearch tests"
-  # p bsearch([1, 2, 3], 1) # => 0
-  # p bsearch([2, 3, 4, 5], 3) # => 1
-  # p bsearch([2, 4, 6, 8, 10], 6) # => 2
-  # p bsearch([1, 3, 4, 5, 9], 5) # => 3
-  # p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
-  # p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
-  # p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
-end
+#   subsets.map(&:sort).uniq
+# end

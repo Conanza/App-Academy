@@ -33,21 +33,19 @@ class TicTacToeNode
     end
   end
 
-  # This method generates an array of all moves that can be made after
-  # the current move.
   def children
     potential_states = []
 
     @board.rows.each_with_index do |row, x|
       row.each_with_index do |position, y|
-        next unless @board.empty?([x, y])
+        pos = [x, y]
+        next unless @board.empty?(pos)
         dup_board = @board.dup
-        dup_board[[x,y]] = @next_mover_mark
-        new_pos = @prev_move_pos.nil? ? [x, y] : (@prev_move_pos + [x, y])
+        dup_board[pos] = @next_mover_mark
         new_next_mover_mark = @next_mover_mark == :x ? :o : :x
         potential_states << TicTacToeNode.new(dup_board,
                                               new_next_mover_mark,
-                                              new_pos)
+                                              pos)
       end
     end
 
@@ -56,23 +54,23 @@ class TicTacToeNode
 
   private
 
-  def other_mark(mark)
-    mark == :x ? :o : :x
-  end
+    def other_mark(mark)
+      mark == :x ? :o : :x
+    end
 
-  def any_losing_nodes?(evaluator)
-    self.children.any? { |child| child.losing_node?(evaluator) }
-  end
+    def any_losing_nodes?(evaluator)
+      self.children.any? { |child| child.losing_node?(evaluator) }
+    end
 
-  def all_losing_nodes?(evaluator)
-    self.children.all? { |child| child.losing_node?(evaluator) }
-  end
+    def all_losing_nodes?(evaluator)
+      self.children.all? { |child| child.losing_node?(evaluator) }
+    end
 
-  def all_winning_nodes?(evaluator)
-    self.children.all? { |child| child.winning_node?(evaluator)}
-  end
+    def all_winning_nodes?(evaluator)
+      self.children.all? { |child| child.winning_node?(evaluator)}
+    end
 
-  def any_winning_nodes?(evaluator)
-    self.children.any? { |child| child.winning_node?(evaluator) }
-  end
+    def any_winning_nodes?(evaluator)
+      self.children.any? { |child| child.winning_node?(evaluator) }
+    end
 end

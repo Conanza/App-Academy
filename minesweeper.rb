@@ -253,3 +253,6 @@ end
 #     x.play
 #   end
 # end
+
+# be able to accept variable dimension and bomb count
+# Refactor all

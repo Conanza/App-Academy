@@ -5,4 +5,4 @@ Data structures
 Building our own Tree structure class
 
 Knight's Travails,
-Tic-Tac-Toe AI
+Tic-Tac-Toe Super Computer player AI

@@ -1,9 +1,22 @@
 require 'yaml'
 
 class Tile
+  DXDY = [
+    [-1,  1],
+    [ 0,  1],
+    [ 1,  1],
+    [ 1,  0],
+    [ 1, -1],
+    [ 0, -1],
+    [-1, -1],
+    [-1,  0]
+  ]
+
   attr_reader :bomb, :revealed
 
   def initialize(bomb, board, position) #flagged and revealed variables?
+    @board, @pos = board, position
+
     @revealed = false
     @flagged = false
     @bomb = bomb
@@ -37,18 +50,11 @@ class Tile
 
   def neighbors
     neighbors = []
-    neighboring_coords = [[-1, 1],
-                          [0, 1],
-                          [1, 1],
-                          [1, 0],
-                          [1, -1],
-                          [0, -1],
-                          [-1, -1],
-                          [-1, 0]]
+    
     neighboring_spots = []
-    neighboring_coords.each do |coords|
-      neighboring_spots << [coords.first + @position.first,
-                              coords.last + @position.last]
+    DXDY.each do |change|
+      neighboring_spots << [change.first + @position.first,
+                              change.last + @position.last]
     end
     neighboring_spots.select! do |spot|
       spot.first.between?(0, 8) && spot.last.between?(0, 8)
@@ -82,6 +88,7 @@ end
 
 class Board
   attr_reader :num_bombs, :grid, :over
+  attr_writer :over
 
   def initialize(num_bombs)
     @grid = Array.new(9) { Array.new(9) }
@@ -110,56 +117,6 @@ class Board
     end
     new_board
   end
-
-  # def play
-  #   end_game_message = "You win"
-  #   #temporary game loop
-  #   until won?
-  #     self.display
-  #     coords = get_coords
-  #     move = make_move(coords, get_mark)
-  #
-  #     if move == :lose
-  #       end_game_message = "You lose"
-  #       @over = true
-  #       break
-  #     end
-  #   end
-  #
-  #   @over = true
-  #   puts end_game_message
-  #   display
-  # end
-
-  # def make_move(coords, mark)
-  #   if mark == "F"
-  #     grid[coords.first][coords.last].flag
-  #   elsif mark == "R"
-  #     return :lose if grid[coords.first][coords.last].bomb
-  #     grid[coords.first][coords.last].reveal
-  #   end
-  # end
-
-  # def won?
-  #   num_revealed = 0
-  #   @grid.each_index do |x|
-  #     @grid.each_index do |y|
-  #       num_revealed += 1 if @grid[x][y].revealed
-  #     end
-  #   end
-  #   num_revealed == (@grid[0].length ** 2) - @num_bombs
-  # end
-
-  # def get_coords
-  #   puts "Select a coordinate (row,col)"
-  #   input = gets.chomp
-  #   input.split(",").map(&:to_i)
-  # end
-  #
-  # def get_mark
-  #   puts "Flag or reveal? (F or R)"
-  #   gets.chomp
-  # end
 
   def display
     print "  "
@@ -200,7 +157,7 @@ class Minesweeper
 
     @board.over = true
     puts end_game_message
-    display
+    @board.display
   end
 
   def get_coords
@@ -218,8 +175,9 @@ class Minesweeper
     if mark == "F"
       @board.grid[coords.first][coords.last].flag
     elsif mark == "R"
-      return :lose if @board.grid[coords.first][coords.last].bomb
-      @board.grid[coords.first][coords.last].reveal
+      reveal = @board.grid[coords.first][coords.last].reveal
+      return :lose if @board.grid[coords.first][coords.last].bomb && reveal
+      reveal
     end
   end
 
@@ -243,16 +201,16 @@ class Minesweeper
     YAML.load_file(filename)
   end
 end
-# 
-# if $PROGRAM_NAME == __FILE__
-#   if ARGV[0].nil?
-#     x = Minesweeper.new(10)
-#     x.play
-#   else
-#     x = Minesweeper.load_game(ARGV[0])
-#     x.play
-#   end
-# end
+
+if $PROGRAM_NAME == __FILE__
+  if ARGV[0].nil?
+    x = Minesweeper.new(10)
+    x.play
+  else
+    x = Minesweeper.load_game(ARGV[0])
+    x.play
+  end
+end
 
 # be able to accept variable dimension and bomb count
 # Refactor all

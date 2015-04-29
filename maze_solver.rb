@@ -33,9 +33,51 @@
 #!/usr/bin/env ruby
 
 class MazeSolver
+  attr_reader :maze
 
+  def initialize(filename)
+    @maze = File.readlines(filename)
+    @visitied_positions = [find_pos("S")]
+  end
+
+  def find_pos(place)
+    maze.each_with_index do |row, i|
+      row.each_with_index do |col, j|
+        return [i, j] if col == place
+      end
+    end
+
+    nil
+  end
+
+  def build_moves
+
+  end
+
+  def trace_path
+
+  end
+
+  def solve
+    start = find_pos("S")
+    finish = find_pos("E")
+  end
+
+  # def maze_each(&prc)
+  #   self.each_with_index do |row, i|
+  #     row.each_with_index do |col, j|
+  #       prc.call(col)
+  #     end
+  #   end
+  # end
 end
 
+
 if $PROGRAM_NAME == __FILE__
-  
+  if ARGV[0].empty?
+    return
+  else
+    file = ARGV[0]
+    maze = MazeSolver.new(file)
+  end
 end

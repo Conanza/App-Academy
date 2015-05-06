@@ -1,9 +1,8 @@
 class Question
   def self.all
     questions = QuestionsDatabase.execute('SELECT * FROM questions')
-    questions.map do |question|
-      Question.new(question)
-    end
+
+    questions.map { |question| Question.new(question) }
   end
 
   def self.find_by_id(id)
@@ -13,8 +12,9 @@ class Question
       FROM
         questions
       WHERE
-        questions.id = ?
+        questions.id = ?;
     SQL
+
     Question.new(question.first)
   end
 
@@ -25,7 +25,7 @@ class Question
       FROM
         questions
       WHERE
-        questions.user_id = ?
+        questions.user_id = ?;
     SQL
 
     questions.map { |question| Question.new(question) }
@@ -42,7 +42,7 @@ class Question
   attr_reader :id
   attr_accessor :title, :body, :user_id
 
-  def initialize(options={})
+  def initialize(options = {})
     @id = options['id']
     @title = options['title']
     @body = options['body']
@@ -51,6 +51,10 @@ class Question
 
   def author
     User.find_by_id(@user_id)
+  end
+
+  def followers
+    QuestionFollow.followers_for_question_id(@id)
   end
 
   def likers
@@ -63,9 +67,5 @@ class Question
 
   def replies
     Reply.find_by_question_id(@id)
-  end
-
-  def followers
-    QuestionFollow.followers_for_question_id(@id)
   end
 end

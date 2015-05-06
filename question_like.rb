@@ -13,6 +13,7 @@ class QuestionLike
       WHERE
         questions.id = ?;
     SQL
+
     users.map{ |user| User.new(user) }
   end
 
@@ -46,6 +47,7 @@ class QuestionLike
       ORDER BY
         COUNT(question_likes.id) DESC LIMIT ?;
     SQL
+    
     questions.map { |question| Question.new(question) }
   end
 

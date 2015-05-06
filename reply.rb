@@ -1,9 +1,8 @@
 class Reply
   def self.all
     replies = QuestionsDatabase.execute('SELECT * FROM replies')
-    replies.map do |reply|
-      Reply.new(reply)
-    end
+    
+    replies.map { |reply| Reply.new(reply) }
   end
 
   def self.find_by_user_id(user_id)
@@ -41,6 +40,7 @@ class Reply
       WHERE
         replies.id = ?;
     SQL
+    
     Reply.new(reply.first)
   end
 

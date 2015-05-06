@@ -30,6 +30,7 @@ class QuestionFollow
       WHERE
         questions.id = ?;
     SQL
+
     followers.map {|follower| User.new(follower)}
   end
 
@@ -46,6 +47,7 @@ class QuestionFollow
       ORDER BY
         COUNT(question_follows.id) DESC LIMIT ?;
     SQL
+    
     questions.map{|question| Question.new(question)}
   end
 end

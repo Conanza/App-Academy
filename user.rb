@@ -2,13 +2,12 @@ require_relative  'questions_database'
 require_relative  'question'
 
 class User
-  include Saveable
+  # include Saveable
 
   def self.all
     users = QuestionsDatabase.execute('SELECT * FROM users')
-    users.map do |user|
-      User.new(user)
-    end
+    
+    users.map { |user| User.new(user) }
   end
 
   def self.find_by_id(id)
@@ -20,6 +19,7 @@ class User
       WHERE
         users.id = ?
     SQL
+    
     User.new(user.first)
   end
 
@@ -32,9 +32,8 @@ class User
       WHERE
         users.fname = ? AND users.lname = ?
     SQL
-    users.map do |user|
-      User.new(user)
-    end
+    
+    users.map { |user| User.new(user) }
   end
 
   attr_reader :id
@@ -95,7 +94,10 @@ class User
         VALUES
           (?, ?);
       SQL
-    end
-  end
 
+      @id = QuestionsDatabase.last_insert_row_id
+    end
+
+    self
+  end
 end

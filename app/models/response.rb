@@ -48,7 +48,11 @@ class Response < ActiveRecord::Base
   end
 
   def respondent_is_not_poll_author
-    poll_author = self.question.poll.author_id
+    poll_author = Poll
+      .joins(questions: :answer_choices)
+      .where('answer_choices.id = ?', self.answer_choice_id)
+      .pluck('polls.author_id')
+      .first
 
     if poll_author == self.respondent_id
       errors[:respondent_id] << "cannot be the poll's author"

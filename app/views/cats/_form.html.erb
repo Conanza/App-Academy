@@ -3,6 +3,10 @@
 
 <form action="<%= action %>" method="post">
   <input type="hidden" name="_method" value="<%= method %>">
+  <input type="button" value="Click to win a puppy!"><br><br>
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
 
   <label for="cat_name">Name</label>
   <input

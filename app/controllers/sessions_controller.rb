@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action do
+  before_action only:[:create, :new] do
     if already_signed_in?
       flash[:notice] = "Already signed in yo"
       redirect_to cats_url
@@ -39,6 +39,7 @@ class SessionsController < ApplicationController
 
     def already_signed_in?
       @user = User.find_by(session_token: session[:session_token])
-      session[:session_token] == @user.session_token
+      return false if @user.nil?
+      return session[:session_token] == @user.session_token
     end
 end

@@ -18,8 +18,7 @@ class SessionsController < ApplicationController
       login_user!
       redirect_to cats_url
     else
-      # undefined method `errors' for nil:NilClass
-      flash.now[:error] = @user.errors.full_messages
+      flash.now[:notice] = "Wrong username/pw combo dude"
       render :new
     end
   end

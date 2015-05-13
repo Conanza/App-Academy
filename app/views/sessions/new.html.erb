@@ -4,9 +4,9 @@
   <input type="hidden"
          name="authenticity_token"
          value="<%= form_authenticity_token %>">
-         
+
   <label>Username
-    <input type="string" name="user[username]" value="<%= @user.username %>">
+    <input type="string" name="user[username]" value="<%= @user.username if @user %>">
   </label>
 
   <label>Password

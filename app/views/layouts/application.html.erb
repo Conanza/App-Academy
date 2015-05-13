@@ -6,19 +6,22 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+
+<nav>
   <%= flash[:notice] if flash[:notice] %><br>
 
 
   <% if current_user %>
-    <%= "Welcome #{current_user.username}" %>
+    <%= "Welcome #{current_user.username}" %><br><br>
     <%= button_to "Log Out", sessions_url, method: :delete %>
-   <% else %>
+  <% else %>
     <%= "Please Log In" %>
     <%= button_to "Log In", new_sessions_url, method: :get %>
   <% end %>
+</nav>
 
-<%= yield %>
-
+<body>
+  <%= yield %>
 </body>
+
 </html>

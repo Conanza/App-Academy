@@ -7,6 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= flash[:notice] if flash[:notice] %>
+
+
+  <% if current_user %>
+    <%= "Welcome #{current_user.username}" %>
+    <%= button_to "Log Out", sessions_url, method: :delete %>
+   <% else %>
+    <%= "Please Log In" %>
+    <%= button_to "Log In", new_sessions_url, method: :get %>
+  <% end %>
 
 <%= yield %>
 

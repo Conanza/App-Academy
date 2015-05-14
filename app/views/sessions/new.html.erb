@@ -1,0 +1,26 @@
+<h1>LOG IN</h1>
+
+<%= render "shared/errors" %>
+
+<p>
+  <form action="<%= session_url %>" method="POST">
+    <input 
+      type="hidden" 
+      name="authenticity_token" 
+      value="<%= form_authenticity_token %>">
+
+    <label>EMAIL: 
+      <input type="text" name="session[email]" value="">
+    </label>
+
+    <label>PASSWORD:
+      <input type="password" name="session[password]" value="">
+    </label>
+
+    <input type="submit" value="Log in">
+  </form>
+</p>
+
+<p>
+  NEW USER? <%= link_to "SIGNUP HERE", new_user_url %>
+</p>

@@ -13,4 +13,11 @@ class ApplicationController < ActionController::Base
     user.reset_session_token!
     session[:session_token] = user.session_token
   end
+
+  def require_login
+    return if current_user
+    flash[:errors] = ["Log in first"]
+
+    redirect_to new_session_url
+  end
 end

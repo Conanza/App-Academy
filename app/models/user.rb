@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
 
   after_initialize :set_session_token
 
+  has_many :subs, foreign_key: :moderator_id
+
   def self.generate_session_token
     SecureRandom.urlsafe_base64(16)
   end

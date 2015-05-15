@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  # signup form
+  # login form
   def new
     if logged_in?
       flash[:notices] = ["ALREADY LOGGED IN YO"]

@@ -14,9 +14,12 @@
       <% end %>
     <% end %>
   </p>
+
   
-  <%= button_to "LOG OUT", session_url, method: :delete if logged_in? %>
   <%= yield %>
 
+
+
+  <br><br><%= button_to "LOG OUT", session_url, method: :delete if logged_in? %>
 </body>
 </html>

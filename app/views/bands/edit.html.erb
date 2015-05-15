@@ -1,0 +1,22 @@
+<h1>Edit <%= @band.name %></h1>
+
+<%= render "shared/errors" %>
+
+<form action="<%= band_url(@band) %>" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  <%= csrf_auth_token %>
+
+  <label for="band_name">Band Name:
+    <input 
+      type="text" 
+      id="band_name" 
+      name="band[name]" 
+      value="<%= @band.name %>"
+    >
+  </label>
+
+  <input type="submit" value="Update Band">
+</form>
+
+
+<%= link_to "Cancel", bands_url %>

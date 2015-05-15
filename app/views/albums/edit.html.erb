@@ -1,0 +1,48 @@
+<h1>Update <%= @album.title %></h1>
+
+<%= render "shared/errors" %>
+
+<form action="<%= album_url(@album) %>" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  <%= csrf_auth_token %>
+
+  <label for="album-title">Album title:</label><br>
+  <input 
+    id="album-title"
+    type="text" 
+    name="album[title]"
+    value="<%= @album.title %>"
+  >
+  <br><br>
+
+  <label for="album-type">Type of Album:</label><br>
+  <% Album::ALBUM_TYPE.each do |album_type| %>
+    <%= album_type.upcase %>
+    <input 
+      <%= "checked" if @album.album_type == album_type %>
+      id="album-type"
+      type="radio"
+      name="album[album_type]"
+      value="<%= album_type %>"
+    >
+  <% end %>
+  <br><br>
+
+  <label for="album-band">Recorded by:</label><br>
+  <select id="album-band" name="album[band_id]">
+    <% @bands.each do |band| %>
+      <option 
+        value="<%= band.id %>"
+        <%= "selected" if @album.band_id == band.id %>
+      >
+        <%= band.name %>
+      </option>
+    <% end %>
+  </select>
+  <br><br>
+
+  <input type="submit" value="UPDATE album">
+  <br><br>
+
+  <%= link_to "<< Back to #{@album.band.name}", band_url(@album.band_id) %>
+</form>

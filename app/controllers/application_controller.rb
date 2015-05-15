@@ -14,6 +14,12 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    User.find_by(session_token: session[:session_token])
+    @current_user ||= User.find_by(session_token: session[:session_token])
+  end
+
+  def require_log_in
+    return if logged_in?
+    flash[:notices] = ["Please log in first"]
+    redirect_to new_session_url 
   end
 end

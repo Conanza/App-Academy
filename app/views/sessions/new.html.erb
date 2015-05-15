@@ -4,10 +4,7 @@
 
 <p>
   <form action="<%= session_url %>" method="POST">
-    <input 
-      type="hidden" 
-      name="authenticity_token" 
-      value="<%= form_authenticity_token %>">
+    <%= csrf_auth_token %>
 
     <label>EMAIL: 
       <input type="text" name="session[email]" value="">

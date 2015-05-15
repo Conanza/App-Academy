@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
       login_user(@user)
       redirect_to @user
     else
+      flash[:errors] = ["invalid username/pw combo"]
       render :new
     end
   end

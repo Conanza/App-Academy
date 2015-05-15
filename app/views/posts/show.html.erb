@@ -1,5 +1,9 @@
-<br><small>in <%= @post.sub.title %></small>
 <h1><%= @post.title %></h1>
+<small>in:
+  <% @post.subs.each do |sub| %>
+    <li><%= sub.title %></li>
+  <% end %>
+</small>
 
 <p>
 <%= @post.url %>
@@ -17,6 +21,7 @@ by <%= @post.author.username %>
   <%= link_to "edit post", edit_post_url(@post) %>
 </p>
 
+<%= button_to "delete post", post_url(@post), method: :delete %>
 
 <p>
 <%= link_to "all subs", subs_url %>

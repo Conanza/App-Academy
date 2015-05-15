@@ -1,6 +1,6 @@
 class SubsController < ApplicationController
   before_action :require_login, only: [:new, :create]
-  # before_action :require_moderator
+  before_action :require_moderator, only: [:edit, :destroy]
 
   def index
     @subs = Sub.all
@@ -11,7 +11,7 @@ class SubsController < ApplicationController
   end
 
   def show
-    @sub = Sub.find(params[:id])
+    @sub = Sub.includes(:posts).find(params[:id])
   end
 
   def create
@@ -54,5 +54,11 @@ class SubsController < ApplicationController
 
     def sub_params
       params.require(:sub).permit(:title, :description, :moderator_id)
+    end
+
+    def require_moderator
+      return if current_user == Sub.find(params[:id]).moderator
+      flash[:notices] = ["only a mod may do that"]
+      redirect_to subs_url
     end
 end

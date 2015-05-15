@@ -1,0 +1,23 @@
+<br><small>in <%= @post.sub.title %></small>
+<h1><%= @post.title %></h1>
+
+<p>
+<%= @post.url %>
+</p>
+
+<p>
+<%= @post.content %>
+</p>
+
+<p>
+by <%= @post.author.username %>
+</p>
+
+<p>
+  <%= link_to "edit post", edit_post_url(@post) %>
+</p>
+
+
+<p>
+<%= link_to "all subs", subs_url %>
+</p>

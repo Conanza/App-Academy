@@ -1,0 +1,41 @@
+<h1>EDIT POST</h1>
+
+<%= render "shared/errors" %>
+
+<form action="<%= post_url(@post) %>" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+<label>POST TO SUB:
+  <select name="post[sub_id]">
+    <% @subs.each do |sub| %>
+      <option
+        name="post[sub_id]"
+        value="<%= sub.id %>"
+        <%= "selected" if sub.id == @post.sub_id %>>
+        <%= sub.title %>
+      </option>
+    <% end %>
+  </select>
+</label><br>
+
+<label>POST TITLE
+  <input type="text" name="post[title]" value="<%= @post.title %>">
+</label><br>
+
+
+<label>POST URL
+  <input type="text" name="post[url]" value="<%= @post.url %>">
+</label><br>
+
+
+<label>CONTENT
+  <textarea name="post[content]"><%= @post.content %></textarea>
+</label>
+
+
+<input type="submit" value="Edit POST">
+</form>

@@ -28,7 +28,22 @@ by <%= @post.author.username %>
 <%= link_to "Create new comment", new_post_comment_url(@post) %>
 <p>
   <% @post.comments.each do |comment| %>
-    <%= comment.content %><br> by <%= comment.author.username %>
+    <% if comment.parent_comment.nil? %>
+      <%= link_to "comment #{comment.id}", comment_url(comment) if comment.parent_comment.nil? %>
+      <%= comment.content %><br> by <%= comment.author.username %>
+
+      <ul>
+      <% unless comment.child_comments.empty? %>
+        <% comment.child_comments.each do |child_comment| %>
+
+          <li>
+            <%= link_to "reply #{child_comment.id}", comment_url(child_comment) %>
+            <%= child_comment.content %><br> by <%= child_comment.author.username %>
+          </li>
+        <% end %>
+      <% end %>
+      </ul>
+    <% end %>
     <hr>
   <% end %>
 </p>

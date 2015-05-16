@@ -1,0 +1,14 @@
+<% post.comments.each do |comment| %>
+    <%= link_to "comment #{comment.id}", comment_url(comment) %>
+    <%= comment.content %><br> by <%= comment.author.username %>
+
+    <ul>
+    <% unless comment.child_comments.empty? %>
+      <% comment.child_comments.each do |child_comment| %>
+        <li><%= render "posts/comment", post: child_comment %></li>
+      <% end %>
+    <% end %>
+    </ul>
+
+  <hr>
+<% end %>

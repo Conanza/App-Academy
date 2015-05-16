@@ -27,7 +27,7 @@ by <%= @post.author.username %>
 <h3>COMMENTS</h3>
 <%= link_to "Create new comment", new_post_comment_url(@post) %>
 <p>
-  <% @post.top_level_comments.each do |comment| %>
+  <% @post.comments.where(parent_comment_id: nil).each do |comment| %>
     <%= render "posts/comment", comment: comment %>
   <% end %>
 </p>

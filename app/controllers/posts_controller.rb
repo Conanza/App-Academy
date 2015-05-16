@@ -40,7 +40,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.includes(:comments).find(params[:id])
+    @post = Post.includes(:comments).includes(:author).find(params[:id])
   end
 
   def destroy
@@ -53,7 +53,7 @@ class PostsController < ApplicationController
   private
 
     def post_params
-      params.require(:post).permit(:title, :url, :content, :sub_ids => [])
+      params.require(:post).permit(:title, :url, :content, sub_ids: [] )
     end
 
     def require_author

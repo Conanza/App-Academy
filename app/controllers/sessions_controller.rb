@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       login_user(@user)
       redirect_to subs_url
     else
-      flash[:errors] = ["invalid username/pw combo"]
+      flash.now[:errors] = ["invalid username/pw combo"]
       render :new
     end
   end

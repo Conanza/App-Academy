@@ -23,6 +23,16 @@ by <%= @post.author.username %>
 
 <%= button_to "delete post", post_url(@post), method: :delete %>
 
+<hr>
+<h3>COMMENTS</h3>
+<%= link_to "Create new comment", new_post_comment_url(@post) %>
+<p>
+  <% @post.comments.each do |comment| %>
+    <%= comment.content %><br> by <%= comment.author.username %>
+    <hr>
+  <% end %>
+</p>
+
 <p>
 <%= link_to "all subs", subs_url %>
 </p>

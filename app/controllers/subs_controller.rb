@@ -22,7 +22,7 @@ class SubsController < ApplicationController
       flash[:notices] = ["sub created"]
       redirect_to @sub
     else
-      flash[:errors] = @sub.errors.full_messages
+      flash.now[:errors] = @sub.errors.full_messages
       render :new
     end
   end
@@ -38,7 +38,7 @@ class SubsController < ApplicationController
       flash[:notices] = ["sub updated"]
       redirect_to @sub
     else
-      flash[:errors] = @sub.errors.full_messages
+      flash.now[:errors] = @sub.errors.full_messages
       render :edit
     end
   end

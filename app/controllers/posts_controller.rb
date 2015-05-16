@@ -16,7 +16,7 @@ class PostsController < ApplicationController
       redirect_to @post
     else
       @subs = Sub.all
-      flash[:errors] = @post.errors.full_messages
+      flash.now[:errors] = @post.errors.full_messages
       render :new
     end
   end
@@ -34,13 +34,13 @@ class PostsController < ApplicationController
       redirect_to @post
     else
       @subs = Sub.all
-      flash[:errors] = @post.errors.full_messages
+      flash.now[:errors] = @post.errors.full_messages
       render :edit
     end
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(:comments).find(params[:id])
   end
 
   def destroy

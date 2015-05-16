@@ -1,0 +1,3 @@
+<% comment.child_comments.each do |child_comment| %>
+    <li><%= render "posts/comment", comment: child_comment %></li>
+<% end %>

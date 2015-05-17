@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: redirect("/subs")
+  root "static_pages#home"
   resources :users
   resource :session, only: [:new, :create, :destroy]
 
@@ -10,4 +10,8 @@ Rails.application.routes.draw do
   end
 
   resources :comments, only: [:create, :show]
+
+  get "/contact" => "static_pages#contact"
+  get "/about" => "static_pages#about"
+
 end

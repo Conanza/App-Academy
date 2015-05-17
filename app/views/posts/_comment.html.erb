@@ -1,5 +1,6 @@
 <%= link_to "comment #{comment.id}", comment_url(comment) %>
 <%= comment.content %><br> by <%= comment.author.username %>
+<br><%= time_ago_in_words(comment.created_at) %> ago
 
 <ul>
 <% unless comment.child_comments.empty? %>

@@ -3,12 +3,9 @@
 <%= render "shared/errors" %>
 
 <form action="<%= comments_url %>" method="POST">
+  <%= auth_token %>
   <input type="hidden" name="comment[post_id]" value="<%= @post.id %>">
 
-  <input
-    type="hidden"
-    name="authenticity_token"
-    value="<%= form_authenticity_token %>">
 
 <label>CONTENT
   <textarea

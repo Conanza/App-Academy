@@ -3,10 +3,7 @@
 
 <div class="row">
 <form action="<%= session_url %>" method="POST">
-  <input
-    type="hidden"
-    name="authenticity_token"
-    value="<%= form_authenticity_token %>">
+  <%= auth_token %>
 
 <div class="form-group col-xs-4 col-xs-offset-1">
   <label for="session-username">Username</label>

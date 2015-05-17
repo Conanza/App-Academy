@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   def set_session_token
-    self.session_token = User.generate_session_token
+    self.session_token ||= User.generate_session_token
   end
 
   def reset_session_token!

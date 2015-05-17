@@ -3,11 +3,7 @@
 <%= render "shared/errors" %>
 
 <form action="<%= subs_url %>" method="POST">
-  <input
-    type="hidden"
-    name="authenticity_token"
-    value="<%= form_authenticity_token %>">
-
+<%= auth_token %>
 
 <label>SUB TITLE
   <input type="text" name="sub[title]" value="<%= @sub.title %>">

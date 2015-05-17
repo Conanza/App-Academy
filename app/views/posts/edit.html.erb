@@ -4,10 +4,7 @@
 
 <form action="<%= post_url(@post) %>" method="POST">
   <input type="hidden" name="_method" value="PATCH">
-  <input
-    type="hidden"
-    name="authenticity_token"
-    value="<%= form_authenticity_token %>">
+  <%= auth_token %>
 
 <h3>POST TO SUB:</h3>
   <input type="hidden" name="post[sub_ids][]" value="">

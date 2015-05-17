@@ -20,16 +20,17 @@
   </div>
 </div>
 
-<div class="row text-center">
+<div class="row">
   <h1>MEET THE TEAM</h1>
 </div>
 
 <div class="row text-center">
   <div class="col-xs-3">
-    <img
-      src="<%= asset_path( 'beagle.jpg' ) %>"
-      alt="Bagel"
-      class="img-responsive img-circle">
+    <%= image_tag(
+      "beagle.jpg",
+      size: "200x200",
+      alt: "Bagel",
+      class: "img-responsive img-circle") %>
     <h2>Bagel</h2>
     <p>
       A little shy
@@ -37,10 +38,11 @@
   </div>
 
   <div class="col-xs-3">
-    <img
-      src="<%= asset_path( 'frenchie.jpg' ) %>"
-      alt="Fry"
-      class="img-responsive img-circle">
+    <%= image_tag(
+      "frenchie.jpg",
+      size: "200x200",
+      alt: "Fry",
+      class: "img-responsive img-circle") %>
     <h2>Fry</h2>
     <p>
       Don't underestimate him

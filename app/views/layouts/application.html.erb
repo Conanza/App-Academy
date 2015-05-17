@@ -1,29 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Redditclone</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <head>
+    <title>REDDIT CLONE</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
 
-  <nav>
-    <% if current_user %>
-        WELCOME <%= current_user.username %>
-        <%= button_to "LOG OUT", session_url, method: :delete %>
-    <% else %>
-      <%= button_to "LOG IN", new_session_url, method: :get %>
-    <% end %>
+  <nav class="nav navbar-default">
+    <div>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed"
+          data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle Nav</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <% if current_user %>
+            <li><%= current_user.username %></li>
+            <li><%= link_to "Subs Index", subs_url %></li>
+            <li><%= link_to "Create Sub", new_sub_url %></li>
+            <li><%= link_to "Create Post", new_post_url %></li>
+            <li><%= link_to "LOG OUT", session_url, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "LOG IN", new_session_url %></li>
+            <li><%= link_to "SIGN UP", new_user_url %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </nav>
-</head>
-<body>
-  <% if flash[:notices] %>
-    <% flash[:notices].each do |msg| %>
-      <%= msg %>
+
+  <body>
+    <% if flash[:notices] %>
+      <% flash[:notices].each do |msg| %>
+        <%= msg %>
+      <% end %>
     <% end %>
-  <% end %>
 
-
-<%= yield %>
-
-</body>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
 </html>

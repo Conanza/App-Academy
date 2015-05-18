@@ -1,0 +1,15 @@
+<h5>ADD NEW COMMENT</h5>
+
+<%= render "shared/errors" %>
+
+<form action="<%= comments_url %>" method="POST">
+  <%= auth_token %>
+  <input type="hidden" name="comment[post_id]" value="<%= post.id %>">
+
+
+<label for="comment-content">
+  <textarea id="comment-content" name="comment[content]"></textarea>
+</label>
+
+<input type="submit" value="Post COMMENT">
+</form>

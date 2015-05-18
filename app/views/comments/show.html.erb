@@ -19,10 +19,7 @@ by <%= @comment.author.username %><br>
     name="comment[parent_comment_id]"
     value="<%= @comment.id %>">
 
-  <input
-    type="hidden"
-    name="authenticity_token"
-    value="<%= form_authenticity_token %>">
+  <%= auth_token %>
 
 <label>CONTENT
   <textarea

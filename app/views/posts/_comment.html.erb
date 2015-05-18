@@ -3,9 +3,14 @@
 <br><%= time_ago_in_words(comment.created_at) %> ago
 
 <ul>
-<% unless comment.child_comments.empty? %>
-  <%= render "posts/child_comments", comment: comment %>
-<% end %>
+  <% comments_by_parent[comment.id].each do |child_comment| %>
+      <li>
+        <%= render "posts/comment",
+          comment: child_comment,
+          comments_by_parent: comments_by_parent
+         %>
+      </li>
+  <% end %>
 </ul>
 
 <hr>

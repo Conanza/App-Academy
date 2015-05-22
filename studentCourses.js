@@ -30,7 +30,8 @@ Student.prototype.courseLoad = function () {
   var courses = this.courses;
   var listOfDepartments = {};
   for(var i = 0; i < courses.length; i++){
-    if (listOfDepartments[courses[i].dept] === null){
+    listOfDepartments[courses[i].dept] = listOfDepartments[courses[i].dept] || 0;
+    if (listOfDepartments[courses[i].dept] === undefined){
       listOfDepartments[courses[i].dept] = courses[i].credits;
     }
     else {
@@ -56,10 +57,10 @@ Course.prototype.addStudent = function (student) {
 }
 
 Course.prototype.allStudents = function() {
-  var students = this.students;
+  var studentsArr = this.students;
   var studentNames = [];
-  for (var i = 0;  i < students.length; i++){
-    studentNames.push(students[i].name);
+  for (var i = 0;  i < studentsArr.length; i++){
+    studentNames.push(studentsArr[i].name);
   }
   return studentNames;
 }
@@ -72,4 +73,11 @@ console.log(conan.name());
 console.log(simon.name());
 console.log(conan.allCourses());
 
-var math = new Course("math")
+var math = new Course("calc ab", "math", 5);
+var math2 = new Course("trig", "math", 3);
+conan.enroll(math);
+conan.enroll(math2);
+
+console.log(conan.allCourses());
+// console.log(math.allStudents());
+console.log(conan.courseLoad());

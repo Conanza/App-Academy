@@ -20,9 +20,7 @@ class Post < ActiveRecord::Base
   has_many :subs, through: :post_subs, source: :sub
   has_many :comments, dependent: :destroy
 
-  def top_level_comments
-    self.comments.where(parent_comment_id: nil)
-  end
+  has_many :votes, as: :votable
 
   def comments_by_parent_id
     comments_by_parent = Hash.new { |h, k| h[k] = [] }
@@ -32,5 +30,9 @@ class Post < ActiveRecord::Base
     end
 
     comments_by_parent
+  end
+
+  def vote_score
+    self.votes.map(&:value).inject(0, :+)
   end
 end

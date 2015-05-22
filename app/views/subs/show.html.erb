@@ -2,9 +2,39 @@
 
 <%= @sub.description %>
 
+<div class="container">
 <% @sub.posts.each do |post| %>
-  <li><%= link_to post.title, post_url(post) %></li>
+<div class="row">
+  <div class="form-group">
+    <div class="form-control">
+        <div class="col-xs-4">
+          <%= link_to post.title, post_url(post) %> (score: <%= post.vote_score %>)
+        </div>
+        <div class="col-xs-2">
+          <%= button_to "+",
+            post_votes_url(post),
+            method: :post,
+            params: {
+              votable_id: post.id,
+              votable_type: post.class,
+              value: 1 }
+          %>
+        </div>
+        <div class="col-xs-2">
+          <%= button_to "-",
+            post_votes_url(post),
+            method: :post,
+            params: {
+              votable_id: post.id,
+              votable_type: post.class,
+              value: -1 }
+          %>
+        </div>
+    </div>
+  </div>
+</div>
 <% end %>
+</div>
 
 <p><%= link_to "edit sub", edit_sub_url(@sub) %></p>
 

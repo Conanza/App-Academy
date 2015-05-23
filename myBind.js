@@ -15,14 +15,10 @@ function Superhero(name, power) {
 }
 
 var batman = new Superhero("batman", "cunning");
-
-
 batman.fightCrime();
 
 var fightCrime = batman.fightCrime;
-
 fightCrime.myBind(batman)();
 
 var superdude = new Superhero("phil", "flatulence");
-
 fightCrime.myBind(superdude)();

@@ -1,22 +1,26 @@
 var readline = require('readline');
+
 var reader = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
-function askIfGreaterThan (el1, el2, completionCallback) {
-  reader.question("Is " + el1 + " > " + el2 + "?", function (answer) {
+function askIfGreaterThan (el1, el2, callback) {
+  reader.question("Is " + el1 + " > " + el2 + "? ",
+    function (answer) {
       if (answer === "yes") {
-        completionCallback(true);
+        callback(true);
       } else {
-        completionCallback(false);
+        callback(false);
       }
-  });
+    }
+  );
 }
 
-function innerBubbleSortLoop(arr, i, madeAnySwaps, outerBubbleSortLoop) {
+function innerBubbleSortLoop (arr, i, madeAnySwaps, outerBubbleSortLoop) {
   if (i < arr.length - 1) {
-    askIfGreaterThan( arr[i], arr[i + 1], function(isGreaterThan ) {
+    askIfGreaterThan(arr[i], arr[i + 1],
+      function (isGreaterThan) {
         if (isGreaterThan) {
           var temp = arr[i];
           arr[i] = arr[i + 1];
@@ -24,19 +28,20 @@ function innerBubbleSortLoop(arr, i, madeAnySwaps, outerBubbleSortLoop) {
           madeAnySwaps = true;
         }
         innerBubbleSortLoop(arr, i + 1, madeAnySwaps, outerBubbleSortLoop);
-    });
-
+      }
+    );
   } else if (i === arr.length - 1) {
     outerBubbleSortLoop(madeAnySwaps);
+    return;
   }
 }
 
 
-function absurdBubbleSort(arr, sortCompletionCallback) {
-  function outerBubbleSortLoop(madeAnySwaps) {
+function absurdBubbleSort (arr, sortCompletionCallback) {
+  function outerBubbleSortLoop (madeAnySwaps) {
     if (madeAnySwaps) {
       innerBubbleSortLoop(arr, 0, false, outerBubbleSortLoop);
-    }else {
+    } else {
       sortCompletionCallback(arr);
     }
   }
@@ -44,7 +49,7 @@ function absurdBubbleSort(arr, sortCompletionCallback) {
   outerBubbleSortLoop(true);
 }
 
-absurdBubbleSort([3,2,1], function(arr){
+absurdBubbleSort([3,2,1], function (arr) {
   console.log("Sorted array: " + JSON.stringify(arr));
   reader.close();
 });

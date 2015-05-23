@@ -1,20 +1,16 @@
 var Board = require("./board.js");
 
-var readline = require("readline");
-var reader = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-function Game() {
+function Game(reader) {
   this.players = ["x", "o"];
   this.board = new Board();
+  this.gameReader = reader;
 }
 
 Game.prototype.getInput = function(callback) {
   this.board.print();
-  reader.question("What row?\n", function(row){
-    reader.question("What col?\n", function(col){
+  var that = this;
+  this.gameReader.question("What row?\n", function(row){
+    that.gameReader.question("What col?\n", function(col){
       callback([row, col]);
     });
   });
@@ -33,8 +29,8 @@ Game.prototype.run = function(completionCallback) {
     }
     if (that.board.isWon(that.players[0])) {
       console.log(that.players[0] + " won!");
-      completionCallback(that)
-    }else {
+      completionCallback(that);
+    } else {
       that.changeTurn();
       that.run(completionCallback);
     }
@@ -42,22 +38,4 @@ Game.prototype.run = function(completionCallback) {
 
 };
 
-
-var newgame = new Game();
-newgame.run(function(that){
-  console.log(that.board.print());
-  reader.close();
-})
-
-
-
-
-
-
-
-
-
-
-
-// var hello = new Board();
-// hello.print();
+module.exports = Game;

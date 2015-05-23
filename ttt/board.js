@@ -66,11 +66,7 @@ Board.prototype.rowEquals = function(test, row) {
 };
 
 Board.prototype.transposeGrid = function(){
-  var newGrid = [
-    [],
-    [],
-    []
-  ];
+  var newGrid = [[], [], []];
 
   this.grid.forEach(function(row,i){
     row.forEach(function(cell, j){
@@ -79,4 +75,5 @@ Board.prototype.transposeGrid = function(){
   });
   return newGrid;
 };
+
 module.exports = Board;

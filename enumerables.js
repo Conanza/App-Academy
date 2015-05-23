@@ -27,8 +27,7 @@ console.log([1,2,3].myMap(triple));
 
 Array.prototype.myInject = function( callback ){
   value = this[0];
-  this.slice(1,this.length).myEach(
-    function f(ele){
+  this.slice(1,this.length).myEach(function (ele){
     value = callback(value, ele);
   }
   );

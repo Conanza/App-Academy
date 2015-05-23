@@ -1,25 +1,28 @@
 function Clock () {
 }
-var clock = new Clock();
 
-clock.TICK = 5000;
+Clock.TICK = 5000;
 
 Clock.prototype.printTime = function () {
-  var time = this.time;
-  console.log(time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds() );
+  var time = this.currentTime;
+  console.log([
+    time.getHours(),
+    time.getMinutes(),
+    time.getSeconds()
+  ].join(":"));
 };
 
-Clock.prototype.run = function (tickCb) {
-  this.time = new Date();
+Clock.prototype.run = function () {
+  this.currentTime = new Date();
   this.printTime();
-  setInterval(tickCb, this.TICK );
-
+  setInterval(this._tick.bind(this), Clock.TICK );
 };
 
 Clock.prototype._tick = function () {
-  var time = this.time;
-  time.setTime(time.getTime() + this.TICK);
+  var time = this.currentTime;
+  time.setTime(time.getTime() + Clock.TICK);
   this.printTime();
 };
 
-clock.run(clock._tick.bind(clock));
+var clock = new Clock();
+clock.run();

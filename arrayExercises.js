@@ -1,63 +1,55 @@
-Array.prototype.myUniq = function(){
-  if (this.length === 0){
-    return this;
-  }
-  var newArray = [];
-  for (var i = 0; i < this.length; i++)
-  {
-    flag = true;
-    for (var j = 0; j < newArray.length; j++)
-    {
-      if (this[i] === newArray[j])
-      {
-        flag = false;
-      }
+Array.prototype.myUniq = function () {
+  var uniques = [];
 
+  this.forEach(function(num) {
+    if (uniques.indexOf(num) === -1) {
+      uniques.push(num);
     }
-    if (flag){
-      newArray.push(this[i]);
-    }
-  }
-  return newArray;
-}
-console.log( [1,2,3,4,5,5,6,6,6,6,6,6].myUniq());
+  });
 
+  return uniques;
+};
 
-Array.prototype.twoSum = function() {
-  var results = [];
+Array.prototype.twoSum = function () {
+  var pairs = [];
 
-  for (var i = 0; i < this.length; i++) {
+  this.forEach(function(num1, i) {
     for (var j = i + 1; j < this.length; j++) {
-      if (this[i] + this[j] === 0) {
-        results.push([i, j]);
+      var num2 = this[j];
+
+      if (num1 + num2 === 0) {
+        pairs.push([i, j]);
       }
     }
-  }
+  }.bind(this));
 
-  return results;
-}
+  return pairs;
+};
 
-console.log([-1, 0, 2, -2, 1].twoSum());
 
-Array.prototype.transpose = function() {
+Array.prototype.transpose = function () {
   var newArray = [];
 
-  for (var row = 0; row < this.length; row++) {
-    column = [];
-    for (var col = 0; col < this.length; col++) {
-      column.push( this[col][row]);
+  for (i = 0; i < this.length; i++) {
+    var newRow = [];
+    for (j = 0; j < this.length; j++) {
+      newRow.push(this[j][i]);
     }
-    newArray.push(column);
+    newArray.push(newRow);
   }
 
   return newArray;
 };
 
-var rows = [
+console.log("myUniq test:");
+console.log([1,2,3,4,5,5,6,6,6,6,6,6].myUniq());
+console.log("twoSum test:");
+console.log([-1, 0, 2, -2, 1].twoSum());
+
+var matrix = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8]
   ];
-
-
-console.log(rows.transpose());
+console.log("transpose test:");
+console.log(matrix.transpose());

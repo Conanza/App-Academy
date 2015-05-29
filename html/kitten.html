@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Kitty Website</title>
+    <script src="../js/jquery-2.1.4.js"></script>
+    <script src="../js/kitten.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.17.2/build/cssreset/cssreset-min.css">
+    <link href="../css/kitten.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <div class="carousel">
+       <div class="items">
+         <ul>
+           <li><img src="http://placekitten.com/g/200/300"></li>
+           <li><img src="http://placekitten.com/g/200/301"></li>
+           <li><img src="http://placekitten.com/g/200/299"></li>
+           <li><img src="http://placekitten.com/g/310/300"></li>
+           <li><img src="http://placekitten.com/g/305/300"></li>
+         </ul>
+       </div>
+
+       <a href="javascript:void(0)" class="slide-right">Prev</a>
+       <a href="javascript:void(0)" class="slide-left">Next</a>
+    </div>
+
+
+    <script>
+      $(function() {
+        $('.carousel').carousels();
+      })
+    </script>
+
+  </body>
+</html>

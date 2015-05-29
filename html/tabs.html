@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Cool Website</title>
+    <script src="../js/jquery-2.1.4.js"></script>
+    <script src="../js/tabs.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.17.2/build/cssreset/cssreset-min.css">
+    <link href="../css/tabs.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <ul class="tabs" data-content-tabs="#content-tabs">
+      <li><a href="#retreivers" class="active">Golden Retrievers</a></li>
+      <li><a href="#huskies">Huskies</a></li>
+      <li><a href="#pugs">Pugs</a></li>
+
+    </ul>
+
+    <div id="content-tabs">
+      <div class="tab-pane active" id="retreivers"><p>I don't like Golden Retrievers
+         because they fart a lot. The Golden Retriever is a happy-go-lucky clown.
+         He's reliable, trustworthy, calm, friendly, gentle and confident. He's
+         very eager to please you. He isn't a one-man dog because
+        everybody. He's friendly with all dogs and strangers. He's highly
+        intelligent and trainable. He's very active and energetic. He loves to
+         romp, run and play outdoors and he loves to swim. He's gentle and
+         patient with kids, even bratty ones! He loves to play games and have
+         fun. He's athletic, agile and fast on his feet.</p></div>
+
+
+      <div class="tab-pane" id="huskies"><p>
+        Huskies are majestic. Bred to be a sled dog, the Siberian Husky
+        makes a great all-around dog. They are agreeable, alert, and outgoing.
+        They have amazing endurance, and are always willing to work and want
+         something to do, so they need at least an hour of exercise per day. They
+         also need to be around people or other dogs at all times. They need
+          companionship. A bored or lonely Siberian is a destructive Siberian tearing up couches and
+           cushions. They can easily destroy your house and yard if they decide
+           it's a good idea (and they probably will at some point). Siberians
+            also love to dig!
+
+        </p></div>
+      <div class="tab-pane" id="pugs">
+        <p>
+          Pugs are so ugly they are cute.
+          Pugs are small dogs with big personalities. They live to love
+           and to be loved and were bred for one reason: to be your companion.
+           They will try to live in your lap, eat your food, and
+           sleep on your bed. They are incredibly playful, outgoing, adaptable,
+           happy, lively, and affectionate
+          </p></div>
+
+    </div>
+
+
+
+    <script>
+      $(function() {
+        $('.tabs').tabs();
+      })
+    </script>
+
+  </body>
+</html>

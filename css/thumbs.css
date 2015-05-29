@@ -1,0 +1,22 @@
+div.thumbnails {
+  width: 400px;
+}
+
+.active {
+  height: 300px;
+  z-index: -1;
+}
+.gutter-images img {
+  display: block;
+  width: 20%;
+  float: left;
+  overflow: hidden;
+}
+
+.active img {
+  display: block;
+  width: 100%;
+  max-height: 300px;
+  border: 3px solid;
+
+}

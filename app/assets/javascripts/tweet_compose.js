@@ -10,12 +10,14 @@ $.TweetCompose = function (el) {
 };
 
 $.TweetCompose.prototype.addMentionedUser = function (event) {
-  var $script = this.$el.find("script");
+  event.preventDefault();
 
+  var $script = this.$el.find("script");
   this.$mentionedUsers.append($script.html());
 };
 
 $.TweetCompose.prototype.removedMentionedUser = function (event) {
+  event.preventDefault();
   $(event.currentTarget).parent().remove();
 };
 
@@ -42,11 +44,11 @@ $.TweetCompose.prototype.charCount = function (event) {
 
 
 $.TweetCompose.prototype.handleSuccess = function (response) {
-  var tweet = $('<li>').text(JSON.stringify(response));
-  this.$feed.prepend(tweet);
+  // var tweet = $('<li>').text(JSON.stringify(response));
+  // this.$feed.prepend(tweet);
+  this.$feed.trigger("insert-tweet", response);
 
   this.clearInput();
-
 };
 
 $.TweetCompose.prototype.clearInput = function (event) {

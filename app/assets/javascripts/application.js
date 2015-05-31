@@ -17,3 +17,4 @@
 //= require follow_toggle
 //= require users_search
 //= require tweet_compose
+//= require infinite_tweets

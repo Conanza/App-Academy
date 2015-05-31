@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.serializejson
+//= require underscore
 //= require follow_toggle
 //= require users_search
-//= require jquery.serializejson
 //= require tweet_compose

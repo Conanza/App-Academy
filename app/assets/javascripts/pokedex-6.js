@@ -1,24 +1,46 @@
 Pokedex.Router = Backbone.Router.extend({
   routes: {
-    "": "pokemonIndex",
-    "pokemon/:pokemonId/toys/:toyId": "toyDetail",
-    "pokemon/:id": "pokemonDetail"
+    "*actions": "crazyRoute",
+  },
+
+  initialize: function () {
+  },
+
+  crazyRoute: function (path) {
+    var url = path;
+    var matches = url.match(/#?(\w+)*\/*(\d+)*\/*(\w+)*\/*(\d+)*/);
+    if (matches) {
+      matches = matches.slice(1).filter(function (x) { return !!x; });
+    } else {
+      matches = [];
+    }
+
+    if (matches.length <= 1) {
+      this.pokemonIndex();
+    } else if (matches.length === 2) {
+      this.pokemonIndex(this.pokemonDetail.bind(this, matches[1]));
+    } else if (matches.length === 4) {
+
+      this.pokemonIndex(this.pokemonDetail.bind(this, matches[1],
+          this.toyDetail.bind(this, matches[1], matches[3])));
+    } else {
+      this.pokemonIndex();
+    }
+
   },
 
   pokemonDetail: function (id, callback) {
-    if (!this._pokemonIndex) {
-      this.pokemonIndex(this.pokemonDetail.bind(this, id, callback));
-    } else {
-      var collection = this._pokemonIndex.collection;
-      var poke = collection.get(id);
-      this._detailView && this._detailView.remove();
-      this._detailView = new Pokedex.Views.PokemonDetail({
-        model: poke,
-      });
-      this._detailView.refreshPokemon({}, callback);
+    var collection = this._pokemonIndex.collection;
+    var poke = collection.get(parseInt(id));
+    this._detailView && this._detailView.remove();
+    this._toyDetailView && this._toyDetailView.remove();
+    this._detailView = new Pokedex.Views.PokemonDetail({
+      model: poke
+    });
 
-      $("#pokedex .pokemon-detail").html(this._detailView.$el);
-    }
+    this._detailView.refreshPokemon({}, callback);
+
+    $("#pokedex .pokemon-detail").html(this._detailView.$el);
   },
 
   pokemonIndex: function (callback) {
@@ -31,27 +53,21 @@ Pokedex.Router = Backbone.Router.extend({
 
     this._pokemonIndex = pokemonIndexView.render();
     pokes.fetch({
-      success: function () {
-        callback && callback();
-      }
+      success: function () { callback && callback(); }
     });
     this.pokemonForm();
   },
 
   toyDetail: function (pokemonId, toyId) {
-    if (!this._detailView) {
-      this.pokemonDetail(pokemonId, this.toyDetail.bind(this, pokemonId, toyId));
-    } else {
-      var poke = this._detailView.model;
-      var toy = poke.toys().get(toyId);
+    var poke = this._detailView.model;
+    var toy = poke.toys().get(parseInt(toyId));
+    this._toyDetailView && this._toyDetailView.remove();
+    this._toyDetailView = new Pokedex.Views.ToyDetail({
+      model: toy,
+      collection: this._pokemonIndex.collection
+    });
 
-      this._toyDetailView && this._toyDetailView.remove();
-      this._toyDetailView = new Pokedex.Views.ToyDetail({
-        model: toy
-      });
-
-      $("#pokedex .toy-detail").html(this._toyDetailView.render().$el);
-    }
+    $("#pokedex .toy-detail").html(this._toyDetailView.render().$el);
   },
 
   pokemonForm: function () {
@@ -77,5 +93,4 @@ Pokedex.Router = Backbone.Router.extend({
 $(function () {
   new Pokedex.Router();
   Backbone.history.start();
-
 });

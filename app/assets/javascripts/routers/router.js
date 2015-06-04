@@ -17,6 +17,9 @@ NewsReader.Routers.Router = Backbone.Router.extend({
   },
 
   feedShow: function (id) {
-    alert("feedshow" + id)
+    var feed = NewsReader.feeds.getOrFetch(id);
+    // alert("feedshow" + id)
+    var feedShow = new NewsReader.Views.FeedShow({ model: feed });
+    this.$rootEl.html(feedShow.render().$el);
   }
 });

@@ -3,8 +3,8 @@ TrelloClone.Views.BoardIndexItem = Backbone.CompositeView.extend({
 
   tagName: "div",
 
-  className: "board col-sm-3",
-  
+  className: "board col-xs-3",
+
   initialize: function () {
     this.listenTo(this.model, "sync", this.render);
   },

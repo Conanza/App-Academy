@@ -1,1 +1,13 @@
 <h1>Board Form</h1>
+
+<ul class="errors"></ul>
+
+<label>Board Title
+  <input
+    type="text"
+    name="board[title]"
+    value="<%= board.escape('title') %>"
+  >
+</label>
+
+<button class="form-submit">Submit</button>

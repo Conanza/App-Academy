@@ -22,7 +22,10 @@ TrelloClone.Routers.TrelloRouter = Backbone.Router.extend({
 
   boardNew: function () {
     var newBoard = new TrelloClone.Models.Board();
-    var newBoardView = new TrelloClone.Views.BoardNew({ model: newBoard });
+    var newBoardView = new TrelloClone.Views.BoardNew({
+      model: newBoard,
+      collection: this.collection
+    });
 
     this._swapView(newBoardView);
   },

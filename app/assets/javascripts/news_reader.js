@@ -7,8 +7,17 @@ window.NewsReader = {
 
     NewsReader.feeds = new NewsReader.Collections.Feeds();
 
-    var $rootEl = $('#content');
+    var $rootEl = $('#feed');
+    var $index = $('#index');
+
     var router = new NewsReader.Routers.Router({ $rootEl: $rootEl });
+
+    NewsReader.feeds.fetch();
+    var indexView = new NewsReader.Views.FeedIndex({
+      collection: NewsReader.feeds
+    });
+    $index.html(indexView.render().$el);
+
     Backbone.history.start();
   }
 };

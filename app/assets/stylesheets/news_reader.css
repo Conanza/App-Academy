@@ -1,0 +1,29 @@
+* {
+  font-family: helvetica;
+  position: relative;
+}
+
+h1 {
+
+}
+
+button {
+  border-radius: 12%;
+  box-shadow: none;
+  background-color: #efefef;
+  font-size: 12px;
+}
+
+#index {
+  float: left;
+  width: 50%;
+}
+
+#feed {
+  float: left;
+  width: 50%;
+}
+
+.feed-list {
+  white-space: normal;
+}

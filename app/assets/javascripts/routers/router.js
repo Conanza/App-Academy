@@ -1,6 +1,6 @@
 NewsReader.Routers.Router = Backbone.Router.extend({
   routes: {
-    "": "index",
+    "": "root",
     "feeds/:id": "feedShow"
   },
 
@@ -8,18 +8,20 @@ NewsReader.Routers.Router = Backbone.Router.extend({
     this.$rootEl = options.$rootEl;
   },
 
-  index: function() {
-    NewsReader.feeds.fetch();
-    var indexView = new NewsReader.Views.FeedIndex({
-      collection: NewsReader.feeds
-    });
-    this.$rootEl.html(indexView.render().$el);
+  root: function () {
+    this._currentView && this._currentView.remove();
+    this._currentView = null;
   },
 
   feedShow: function (id) {
     var feed = NewsReader.feeds.getOrFetch(id);
-    // alert("feedshow" + id)
     var feedShow = new NewsReader.Views.FeedShow({ model: feed });
-    this.$rootEl.html(feedShow.render().$el);
+    this._swapView(feedShow);
+  },
+
+  _swapView: function (view) {
+    this._currentView && this._currentView.remove();
+    this._currentView = view;
+    this.$rootEl.html(view.render().$el);
   }
 });

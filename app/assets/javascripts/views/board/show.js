@@ -10,6 +10,10 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
     this.collection.each(this.addListItem.bind(this));
   },
 
+  events: {
+    "submit form": "createList"
+  },
+
   render: function () {
     var content = this.template({ board: this.model });
     this.$el.html(content);
@@ -24,5 +28,23 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
     });
 
     this.addSubview(".board-lists", listItemView);
+  },
+
+  createList: function (event) {
+    var data = $(event.currentTarget).serializeJSON()["list"];
+    $(data).attr("board_id", this.model.id);
+
+    var newList = new TrelloClone.Models.List(data);
+
+    newList.save({}, {
+      success: function (model, response) {
+        this.collection.add(model);
+      }.bind(this),
+
+      error: function (model, response) {
+        alert("cant do that");
+      }
+    });
+
   }
 });

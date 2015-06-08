@@ -7,7 +7,19 @@ TrelloClone.Views.BoardListItem = Backbone.CompositeView.extend({
 
   events: {
     "submit form.new-card": "createCard",
-    "click .delete-list-item": "deleteList"
+    "click .delete-list-item": "deleteList",
+    "mouseover .card-item div": "hover",
+    "mouseout .card-item div": "removeHover"
+  },
+
+  hover: function (event) {
+    $(event.currentTarget).addClass("cardHover");
+    $(event.currentTarget).find("button").removeClass("hidden");
+  },
+
+  removeHover: function (event) {
+    $(event.currentTarget).removeClass("cardHover");
+    $(event.currentTarget).find("button").addClass("hidden");
   },
 
   deleteList: function (event) {

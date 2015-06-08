@@ -47,7 +47,7 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
 
     newList.save({}, {
       success: function (model, response) {
-        this.$(".new-list input.clearable").val("")
+        this.$(".new-list input.clearable").val("");
         this.collection.add(model);
       }.bind(this),
 

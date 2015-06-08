@@ -1,4 +1,6 @@
-<button class="delete-card-item btn-danger btn-xs">X</button>
-<span><strong>Title:</strong> <%= card.escape("title") %></span>
-<span><strong>Desc:</strong> <%= card.escape("description") %></span>
-<span><strong>Priority:</strong> <%= card.escape("ord") %></span>
+<div>
+  <button class="delete-card-item hidden btn-danger btn-xs">X</button>
+  <p><strong>Title:</strong> <%= card.escape("title") %></p>
+  <p><strong>Desc:</strong> <%= card.escape("description") %></p>
+  <p><strong>ORD:</strong> <%= card.escape("ord") %></p>
+</div>

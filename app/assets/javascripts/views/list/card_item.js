@@ -5,6 +5,15 @@ TrelloClone.Views.CardItem = Backbone.CompositeView.extend({
 
   className: "card-item",
 
+  events: {
+    "click .delete-card-item": "deleteCard"
+  },
+
+  deleteCard: function (event) {
+    event.preventDefault();
+    this.model.destroy();
+  },
+
   render: function () {
     var content = this.template({ card: this.model });
     this.$el.html(content);

@@ -4,17 +4,9 @@
   <div class="row">
     <div class="sidebar col-xs-3">
       Create new list
-      <form>
+      <form class="new-list">
         <label>Title
-          <input type="text" name="list[title]">
-        </label>
-
-        <label>Priority
-          <select name="list[ord]">
-            <% [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].forEach(function (ord) { %>
-              <option name="list[ord]" value="<%= ord %>"><%= ord %></option>
-            <% }); %>
-          </select>
+          <input class="clearable" type="text" name="list[title]">
         </label>
 
         <input type="submit" value="submit">

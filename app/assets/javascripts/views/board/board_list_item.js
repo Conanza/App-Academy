@@ -5,9 +5,20 @@ TrelloClone.Views.BoardListItem = Backbone.CompositeView.extend({
 
   className: "list-item col-xs-3",
 
+  events: {
+    "submit form.new-card": "createCard",
+    "click .delete-list-item": "deleteList"
+  },
+
+  deleteList: function (event) {
+    event.preventDefault();
+    this.model.destroy();
+  },
+
   initialize: function () {
     this.collection = this.model.cards();
 
+    this.listenTo(this.collection, "remove", this.removeCardItem);
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.collection, "add", this.addCardItem);
 
@@ -22,11 +33,33 @@ TrelloClone.Views.BoardListItem = Backbone.CompositeView.extend({
     return this;
   },
 
+  removeCardItem: function (card) {
+    this.removeModelSubview(".cards-list", card);
+  },
+
   addCardItem: function (card) {
     var cardItemView = new TrelloClone.Views.CardItem({
       model: card
     });
 
     this.addSubview(".cards-list", cardItemView);
+  },
+
+  createCard: function (event) {
+    event.preventDefault();
+    var data = $(event.currentTarget).serializeJSON().card;
+    $(data).attr("list_id", this.model.id);
+    var newCard = new TrelloClone.Models.Card(data);
+
+    newCard.save({}, {
+      success: function (model, response) {
+        this.$(".clearable").val("");
+        this.collection.add(model);
+      }.bind(this),
+
+      error: function (model, response) {
+        alert("couldn't create card");
+      }
+    });
   }
 });

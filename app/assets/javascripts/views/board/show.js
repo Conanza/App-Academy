@@ -6,14 +6,20 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
 
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.collection, "add", this.addListItem);
+    this.listenTo(this.collection, "remove", this.removeListItem);
 
     this.collection.each(this.addListItem.bind(this));
   },
 
   events: {
-    "submit form": "createList",
+    "submit form.new-list": "createList",
     "mouseover li.list-item": "addHover",
-    "mouseout li.list-item": "removeHover"
+    "mouseout li.list-item": "removeHover",
+    "click .delete-list-item": "removeListItem"
+  },
+
+  removeListItem: function (list) {
+    this.removeModelSubview(".board-lists", list);
   },
 
   render: function () {
@@ -33,6 +39,7 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
   },
 
   createList: function (event) {
+    event.preventDefault();
     var data = $(event.currentTarget).serializeJSON()["list"];
     $(data).attr("board_id", this.model.id);
 
@@ -40,6 +47,7 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
 
     newList.save({}, {
       success: function (model, response) {
+        this.$(".new-list input.clearable").val("")
         this.collection.add(model);
       }.bind(this),
 

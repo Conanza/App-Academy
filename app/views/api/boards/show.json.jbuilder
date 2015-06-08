@@ -11,4 +11,8 @@ json.lists @board.lists do |list|
   # json.board_id list.board_id
   # json.ord list.ord
   json.extract!(list, :id, :title, :board_id, :ord)
+
+  json.cards list.cards do |card|
+    json.extract!(card, :id, :title, :list_id, :description, :ord)
+  end
 end

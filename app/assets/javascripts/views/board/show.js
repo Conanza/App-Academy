@@ -12,8 +12,8 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
 
   events: {
     "submit form": "createList",
-    "mouseover li": "addHover",
-    "mouseout li": "removeHover"
+    "mouseover li.list-item": "addHover",
+    "mouseout li.list-item": "removeHover"
   },
 
   render: function () {

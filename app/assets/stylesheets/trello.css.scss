@@ -12,12 +12,20 @@
 .hover {
   background-color: yellow;
 }
-//
-// .board-lists {
-//   list-style-type: none;
-// }
-//
+
 .list-item {
   margin: 2px;
   border: solid 2px black;
+  overflow: scroll;
+}
+
+.cards-list {
+  width: 100%;
+}
+
+.card-item {
+  background: rgb(219, 207, 207);
+  border: solid 2px black;
+  overflow: hidden;
+  width: 100%;
 }

@@ -3,7 +3,12 @@ TrelloClone.Views.BoardIndexItem = Backbone.CompositeView.extend({
 
   tagName: "div",
 
-  className: "board col-xs-3",
+  events: {
+    "click .delete-board": "deleteBoard",
+    "click div": "showBoard",
+    "mouseover div": "hover",
+    "mouseout div": "removeHover"
+  },
 
   initialize: function () {
     this.listenTo(this.model, "sync", this.render);
@@ -14,5 +19,23 @@ TrelloClone.Views.BoardIndexItem = Backbone.CompositeView.extend({
     this.$el.html(content);
 
     return this;
+  },
+
+  deleteBoard: function (event) {
+    event.stopPropagation();
+    this.model.destroy();
+  },
+
+  showBoard: function (event) {
+    var link = "#/api/boards/" + this.model.id;
+    Backbone.history.navigate(link, { trigger: true });
+  },
+
+  hover: function (event) {
+    this.$(".board").addClass("hover");
+  },
+
+  removeHover: function (event) {
+    this.$(".board").removeClass("hover");
   }
 });

@@ -1,23 +1,29 @@
 <h1>DA <%= board.escape("title") %> BOARD</h1>
 
-<aside class="list-form">
-  Create new list
-  <form>
-    <label>Title
-      <input type="text" name="list[title]">
-    </label>
+<div class="container-fluid">
+  <div class="row">
+    <div class="sidebar col-xs-3">
+      Create new list
+      <form>
+        <label>Title
+          <input type="text" name="list[title]">
+        </label>
 
-    <label>Priority
-      <select name="list[ord]">
-        <% [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].forEach(function (ord) { %>
-          <option name="list[ord]" value="<%= ord %>"><%= ord %></option>
-        <% }); %>
-      </select>
-    </label>
+        <label>Priority
+          <select name="list[ord]">
+            <% [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].forEach(function (ord) { %>
+              <option name="list[ord]" value="<%= ord %>"><%= ord %></option>
+            <% }); %>
+          </select>
+        </label>
 
-    <input type="submit" value="submit">
-  </form>
-</aside>
+        <input type="submit" value="submit">
+      </form>
+    </div>
 
-<h4>LISTS</h4>
-<ul class="row board-lists"></ul>
+    <div class="col-xs-9">
+      <h4>LISTS</h4>
+      <ul class="row board-lists"></ul>
+    </div>
+  </div>
+</div>

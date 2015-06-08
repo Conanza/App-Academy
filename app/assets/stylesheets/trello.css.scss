@@ -1,0 +1,23 @@
+* {
+  list-style-type: none;
+}
+
+.board {
+  border: solid 2px black;
+  height: 150px;
+  margin: 1px;
+  overflow: scroll;
+}
+
+.hover {
+  background-color: yellow;
+}
+//
+// .board-lists {
+//   list-style-type: none;
+// }
+//
+.list-item {
+  margin: 2px;
+  border: solid 2px black;
+}

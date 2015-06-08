@@ -11,7 +11,9 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
   },
 
   events: {
-    "submit form": "createList"
+    "submit form": "createList",
+    "mouseover li": "addHover",
+    "mouseout li": "removeHover"
   },
 
   render: function () {
@@ -45,6 +47,13 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
         alert("cant do that");
       }
     });
+  },
 
+  addHover: function (event) {
+    this.$(event.currentTarget).addClass("hover");
+  },
+
+  removeHover: function (event) {
+    this.$(".list-item").removeClass("hover");
   }
 });

@@ -2,7 +2,8 @@
 <h5><%= list.escape("title") %></h5>
 ORD: <%= list.escape("ord") %>
 
-<ul class="cards-list"></ul>
+<ul class="cards-list sortable"
+  data-list-id="<%= list.id %>"></ul>
 
 <form class="new-card">
   <input

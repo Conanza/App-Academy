@@ -2,11 +2,33 @@
   list-style-type: none;
 }
 
+body {
+  background-color: rgb(138, 170, 211);
+}
+
 .board {
   border: solid 2px black;
   height: 150px;
   margin: 1px;
   overflow: scroll;
+  background-color: #4C6FC5;
+}
+
+.list-item {
+  margin: 2px;
+  border: solid 2px black;
+  background-color: #4C6FC5;
+  padding: 2px;
+}
+
+.cards-list {
+  width: 100%;
+}
+
+.card-item {
+  background: rgb(219, 207, 207);
+  border: solid 2px black;
+  width: 100%;
 }
 
 .hover {
@@ -21,19 +43,6 @@
   visibility: hidden;
 }
 
-.list-item {
-  margin: 2px;
-  border: solid 2px black;
-  overflow: scroll;
-}
-
-.cards-list {
-  width: 100%;
-}
-
-.card-item {
-  background: rgb(219, 207, 207);
-  border: solid 2px black;
-  overflow: hidden;
-  width: 100%;
+.delete-card-item {
+  position: absolute;
 }

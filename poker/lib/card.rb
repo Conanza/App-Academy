@@ -25,8 +25,7 @@ class Card
   }
 
   def initialize(value, suit)
-    @value = value
-    @suit = suit
+    @value, @suit = value, suit
   end
 
   def self.values

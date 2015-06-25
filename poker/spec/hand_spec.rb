@@ -48,5 +48,6 @@ describe Hand do
       expect(tie_breaker(four_kind, four_kind2)).to eq(four_kind2)
       expect(tie_breaker(one_pair, one_pair2)).to eq(one_pair)
     end
+  end
 
 end

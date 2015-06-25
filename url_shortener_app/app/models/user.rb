@@ -9,6 +9,8 @@
 #
 
 class User < ActiveRecord::Base
+  validates :email, presence: true, uniqueness: true
+
   has_many(
     :submitted_urls,
     class_name: "ShortenedUrl",
@@ -30,5 +32,5 @@ class User < ActiveRecord::Base
     source: :visited_url
   )
   
-  validates :email, presence: true, uniqueness: true
+  
 end

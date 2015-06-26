@@ -1,14 +1,13 @@
 JournalApp.Views.PostsIndex = Backbone.View.extend({
+  template: JST['posts/index'],
 
-  // view, listenTo models or collections
   initialize: function () {
     this.listenTo(this.collection, "remove reset", this.render);
   },
 
   tagName: "ul",
 
-  // look in templates directory
-  template: JST['posts/index'],
+
 
   render: function () {
     this.$el.empty();

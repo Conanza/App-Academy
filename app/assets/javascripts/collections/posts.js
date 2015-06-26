@@ -3,21 +3,21 @@ JournalApp.Collections.Posts = Backbone.Collection.extend({
 
   url: "/posts",
 
-  getOrFetch: (function (id) {
-    var collection = this;
-    var post = collection.get(id);
+  getOrFetch: function (id) {
+    var posts = this;
+    var post = posts.get(id);
 
     if (post) {
       post.fetch();
     } else {
-      post = new JournalApp.Models.Post({id: id});
+      post = new JournalApp.Models.Post({ id: id });
       post.fetch({
-        success: function(){
-          collection.add(post);
+        success: function() {
+          posts.add(post);
         }
       });
     }
-    return post;
-  })
 
+    return post;
+  }
 });

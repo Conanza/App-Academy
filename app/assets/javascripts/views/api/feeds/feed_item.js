@@ -1,6 +1,6 @@
 NewsReader.Views.FeedItem = Backbone.CompositeView.extend({
   tagName: 'li',
-  
+
   template: JST["api/feeds/entry"],
 
   initialize: function () {
@@ -10,7 +10,7 @@ NewsReader.Views.FeedItem = Backbone.CompositeView.extend({
   render: function () {
     var content = this.template({ entry: this.model });
     this.$el.html(content);
-    this.attachSubviews();
+
     return this;
   }
 });

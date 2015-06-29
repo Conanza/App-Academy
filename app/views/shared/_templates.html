@@ -10,13 +10,12 @@
 <script type="text/template" id="pokemon-detail-template">
   <div class="detail">
     <img src="<%%= pokemon.escape('image_url') %>"><br>
+
     <%% var attrs = ["attack", "defense", "moves", "name", "poke_type"]; %>
     <%% attrs.forEach(function (attr) { %>
       <span style="font-weight:bold;"><%%= attr %></span>: <%%= pokemon.get(attr) %>
       <br>
     <%% }); %>
-
-
   </div>
 </script>
 
@@ -44,7 +43,8 @@
       <%% } %>
     <%% } %>
 
-    <select data-pokemon-id="<%%= toy.get("pokemon_id") %>" data-toy-id="<%%= toy.id %>">
+    <select data-pokemon-id="<%%= toy.get("pokemon_id") %>"
+            data-toy-id="<%%= toy.id %>">
       <%% pokes.each(function (pokemon) { %>
         <option value="<%%= pokemon.id %>"
           <%%= pokemon.id === toy.get("pokemon_id") ? "selected" : ""%>>

@@ -60,22 +60,26 @@
 
 ## Week 6: More JavaScript
 
-[**W6D1**][w6d1]:
+[**W6D1**][w6d1]: Prototypal inheritance, async client-side code (callbacks and event handlers), IIFE's, HTML5 Canvas -- Asteroids
 
-[**W6D2**][w6d2]:
+[**W6D2**][w6d2]: CSS, semantic HTML
 
-[**W6D3**][w6d3]:
+[**W6D3**][w6d3]: The DOM, jQuery -- Snake
 
-[**W6D4**][w6d4]:
+[**W6D4**][w6d4]: Event delegation, triggering, jQuery plugins -- custom jQuery plugins
 
-[**W6D5**][w6d5]:
+[**W6D5**][w6d5]: AJAX, Underscore -- Twitter with AJAX
 
-## Week 7:
+## Week 7: Backbone!!!
 
 [**W7D1**][w7d1]:
+
 [**W7D2**][w7d2]:
+
 [**W7D3**][w7d3]:
+
 [**W7D4**][w7d4]:
+
 [**W7D5**][w7d5]:
 
 

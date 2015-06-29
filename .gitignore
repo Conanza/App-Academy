@@ -12,5 +12,10 @@
 /db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
+<<<<<<< HEAD
 /log/*.log
+=======
+/log/*
+!/log/.keep
+>>>>>>> 3aa7c9c97a172e4eae67082f73774a9bfebca29b
 /tmp

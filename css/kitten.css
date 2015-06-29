@@ -1,0 +1,37 @@
+.carousel {
+  width: 320px;
+  height: 305px;
+  margin: auto;
+}
+
+
+.items {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.items li {
+  display: none;
+  transition: left 500ms linear;
+  border: 3px solid;
+}
+
+.items li.active {
+  display: block;
+  position: absolute;
+  left: 0%;
+}
+
+.items li.active.right {
+  display: block;
+  position: absolute;
+  left: 100%;
+}
+
+.items li.active.left {
+  display: block;
+  position: absolute;
+  left: -100%;
+}

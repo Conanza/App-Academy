@@ -8,7 +8,7 @@
 
 [**W1D3**][w1d3]: Implementing basic code design -- [Mastermind](./w1d3/mastermind.rb), [Hangman](./w1d3/hangman.rb), [Eight Queens](./w1d3/eightqueens.rb)
 
-[**W1D4**][w1d4]: Exercises on blocks and recursion -- [Word Chains](.w1d4/word_chains.rb)
+[**W1D4**][w1d4]: Exercises on blocks and recursion -- [Word Chains](./w1d4/word_chains.rb)
 
 [**W1D5**][w1d5]: Exercises and algorithms on traversing data structures (BFS, DFS) -- [Knight's Travails](./w1d5/knights_travails.rb), [Unbeatable TicTacToe AI](./w1d5/TicTacToeAI-master/skeleton)
 

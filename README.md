@@ -32,21 +32,29 @@
 
 [**W3D4**][w3d4]: Querying with ActiveRecord, joins, scopes -- Polls
 
-**W3D5**: Metaprogramming -- [ActiveRecord Lite](https://github.com/Conanza/ARLite)
+**W3D5**: Metaprogramming and Reflection -- [ActiveRecord Lite](https://github.com/Conanza/ARLite)
 
 [**W3D6**][w3d6]: JumpStart's Rails tutorial
 
-## Week 4:
+## Week 4: Rails!
 
-[**W4D1**][w4d1]:
-[**W4D2**][w4d2]:
-[**W4D4**][w4d4]:
-[**W4D5**][w4d5]:
+[**W4D1**][w4d1]: Routing, controllers, JSON API
+
+[**W4D2**][w4d2]: REST, CRUD, HTML, views, erb -- 99 Cats
+
+**W4D3**: Auth, cookies, flash, sessions
+
+[**W4D4**][w4d4]: View helpers, layouts, and partials, ActionMailer -- Music App
+
+[**W4D5**][w4d5]: Polymorphic associations, concerns -- Reddit Clone
 
 ## Week 5:
 
-[**W5D1**][w5d1]:
+[**W5D1**][w5d1]: Setting up RSpec, testing models, integration testing -- Goal App
+**W5D2**: HTTP, webservers, protocols -- [Rails Lite](https://github.com/Conanza/railsLITE/tree/master/skeleton)
+
 [**W5D4**][w5d4]:
+
 [**W5D5**][w5d5]:
 
 ## Week 6:

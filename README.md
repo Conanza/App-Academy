@@ -72,15 +72,15 @@
 
 ## Week 7: Backbone!!!
 
-[**W7D1**][w7d1]:
+[**W7D1**][w7d1]: Models, collections, Jbuilder, associations, nesting JSON responses -- Pokedex Pt I
 
-[**W7D2**][w7d2]:
+[**W7D2**][w7d2]: Views and routers -- Pokedex Pt II
 
-[**W7D3**][w7d3]:
+[**W7D3**][w7d3]: CollectionView pattern, getOrFetch pattern, Backbone events -- Journal App
 
-[**W7D4**][w7d4]:
+[**W7D4**][w7d4]: Backbone parse, CompositeView -- News Reader
 
-[**W7D5**][w7d5]:
+[**W7D5**][w7d5]: jQuery UI -- Trello Clone
 
 
 

@@ -16,7 +16,7 @@
 
 [**W2D1**][w2d1]: [Minesweeper](./w2d1/minesweeper.rb)
 
-
+**W2D2**: Exercises on class inheritance, polymorphism, and error handling -- [Chess](../chess)
 
 
 [w1d1]: ./w1d1/

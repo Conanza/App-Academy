@@ -1,0 +1,55 @@
+<h1>Add a track</h1>
+
+<%= render "shared/errors" %>
+
+<form action="<%= tracks_url %>" method="POST">
+  <%= csrf_auth_token %>
+
+  <label for="track-song">Song title:</label><br>
+  <input 
+    id="track-song"
+    type="text" 
+    name="track[song]"
+    value="<%= @track.song %>"
+  >
+  <br><br>
+
+  <label for="track-type">Type of Track:</label><br>
+  <% Track::TRACK_TYPE.each do |track_type| %>
+    <%= track_type.upcase %>
+    <input 
+      <%= "checked" if @track.track_type == track_type %>
+      id="track-type"
+      type="radio"
+      name="track[track_type]"
+      value="<%= track_type %>"
+    >
+  <% end %>
+  <br><br>
+
+  <label for="track-album">Appears on:</label><br>
+  <select id="track-album" name="track[album_id]">
+    <% @albums.each do |album| %>
+      <option 
+        value="<%= album.id %>"
+        <%= "selected" if @track.album_id == album.id %>
+      >
+        <%= album.title %>
+      </option>
+    <% end %>
+  </select>
+  <br><br>
+
+  <label for="track-lyrics">Lyrics:</label><br>
+  <textarea id="track-lyrics" name="track[lyrics]">
+    <%= @track.lyrics %>
+  </textarea>
+  <br><br>
+
+  <input type="submit" value="Add track">
+  <br><br>
+</form>
+
+<p>
+  <%= link_to "<< Back to #{@track.album.title}", album_url(@track.album) %> 
+</p>

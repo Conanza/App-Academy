@@ -1,0 +1,16 @@
+<%= link_to "comment #{comment.id}", comment_url(comment) %>
+<%= comment.content %><br> by <%= comment.author.username %>
+<br><%= time_ago_in_words(comment.created_at) %> ago
+
+<ul>
+  <% comments_by_parent[comment.id].each do |child_comment| %>
+      <li>
+        <%= render "posts/comment",
+          comment: child_comment,
+          comments_by_parent: comments_by_parent
+         %>
+      </li>
+  <% end %>
+</ul>
+
+<hr>

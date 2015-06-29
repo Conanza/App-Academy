@@ -1,0 +1,74 @@
+<div class="jumbotron">
+  <h1>ABOUT</h1>
+  <div class="row">
+    <div class="col-xs-6">
+      <img src="<%= asset_path('me.jpg') %>" class="img-responsive">
+    </div>
+
+    <div class="col-xs-6">
+      <p>
+        This is an App Academy Ruby on Rails project cloning
+        the oh so popular reddit.
+        I'm experimenting with bootstrap
+        and learning how to develop web apps.
+      </p>
+
+      <a class="btn btn-primary btn-lg" href="http://conantzou.tumblr.com">
+        Follow My Journey
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <h1>MEET THE TEAM</h1>
+</div>
+
+<div class="row text-center">
+  <div class="col-xs-3">
+    <%= image_tag(
+      "beagle.jpg",
+      size: "200x200",
+      alt: "Bagel",
+      class: "img-responsive img-circle") %>
+    <h2>Bagel</h2>
+    <p>
+      A little shy
+    </p>
+  </div>
+
+  <div class="col-xs-3">
+    <%= image_tag(
+      "frenchie.jpg",
+      size: "200x200",
+      alt: "Fry",
+      class: "img-responsive img-circle") %>
+    <h2>Fry</h2>
+    <p>
+      Don't underestimate him
+    </p>
+  </div>
+
+  <div class="col-xs-3">
+    <img
+      src="<%= asset_path( 'husky.jpg' ) %>"
+      alt="Iceman"
+      class="img-responsive img-circle">
+    <h2>Iceman</h2>
+    <p>
+      Fuzzy wuzziez
+    </p>
+  </div>
+
+  <div class="col-xs-3">
+    <img
+      src="<%= asset_path( 'notsure.jpg' ) %>"
+      alt="Mysterio"
+      class="img-responsive img-circle">
+    <h2>Mysterio</h2>
+    <p>
+      Always confused
+    </p>
+  </div>
+
+</div>

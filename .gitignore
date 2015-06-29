@@ -9,11 +9,15 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0cd45694344f55ecdc04aa75f6bc0aa91e032014
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
+<<<<<<< HEAD
 <<<<<<< HEAD
 /log/*.log
 =======
@@ -30,4 +34,8 @@
 /log/*
 !/log/.keep
 >>>>>>> fa3ab2eb1b8082a0b21c496cfdfac259721e357c
+=======
+/log/*
+!/log/.keep
+>>>>>>> 0cd45694344f55ecdc04aa75f6bc0aa91e032014
 /tmp

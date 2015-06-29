@@ -1,0 +1,32 @@
+<h1>Comment <%= @comment.id %></h1>
+
+<p>
+  <%= @comment.content %>
+</p>
+
+by <%= @comment.author.username %><br>
+<%= time_ago_in_words(@comment.created_at) %> ago
+
+
+<h3>NEW REPLY</h3>
+
+<%= render "shared/errors" %>
+
+<form action="<%= comments_url %>" method="POST">
+  <input type="hidden" name="comment[post_id]" value="<%= @comment.post.id %>">
+  <input
+    type="hidden"
+    name="comment[parent_comment_id]"
+    value="<%= @comment.id %>">
+
+  <%= auth_token %>
+
+<label>CONTENT
+  <textarea
+    rows=20
+    cols=60
+    name="comment[content]"></textarea>
+</label>
+
+<input type="submit" value="Post REPLY">
+</form>

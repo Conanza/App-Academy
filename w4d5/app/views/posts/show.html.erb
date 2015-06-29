@@ -1,0 +1,44 @@
+<h1><%= @post.title %></h1>
+<small>in:
+  <% @post.subs.each do |sub| %>
+    <li><%= sub.title %></li>
+  <% end %>
+</small>
+
+<p>
+<%= @post.url %>
+</p>
+
+<p>
+<%= @post.content %>
+</p>
+
+<p>
+by <%= @post.author.username %>
+</p>
+
+<p>
+  <%= link_to "edit post", edit_post_url(@post) %>
+</p>
+
+<%= button_to "delete post", post_url(@post), method: :delete %>
+
+<hr>
+<h3>COMMENTS</h3>
+
+<%= render "comments/new", post: @post %>
+
+<div class="container">
+  <% @comments_by_parent[nil].each do |comment| %>
+    <div class="row">
+      <%= render "posts/comment",
+        comment: comment,
+        comments_by_parent: @comments_by_parent
+      %>
+    </div>
+  <% end %>
+</div>
+
+<p>
+<%= link_to "all subs", subs_url %>
+</p>

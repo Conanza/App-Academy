@@ -1,0 +1,34 @@
+<h1>LOG IN</h1>
+<%= render "shared/errors" %>
+
+<div class="row">
+<form action="<%= session_url %>" method="POST">
+  <%= auth_token %>
+
+<div class="form-group col-xs-4 col-xs-offset-1">
+  <label for="session-username">Username</label>
+  <input
+    id="session-username"
+    type="text"
+    name="session[username]"
+    class="form-control">
+</div>
+
+<div class="form-group col-xs-4 col-xs-offset-1">
+  <label for="session-password">Password</label>
+  <input
+    id="session-password"
+    type="password"
+    name="session[password]"
+    class="form-control">
+</div>
+
+<div class="form-group col-xs-4 col-xs-offset-1">
+  <button type="submit" class="btn btn-primary">LOG IN</button>
+  <p>
+    <%= link_to "NEW USER?", new_user_url %>
+  </p>
+</div>
+
+</form>
+</div>

@@ -1,8 +1,21 @@
 # APP ACADEMY CURRICULUM
 
-### Week 1
+### Week 1: Intro to Ruby and OOP, Algorithms
 
-[W1D1][w1d1]: Exercises for Ruby's primitive types and common methods - Array, String, Hash, Enumerables
+[**W1D1**][w1d1]: Exercises for Ruby's primitive types and common methods - Array, String, Hash, Enumerables
+
+[**W1D2**][w1d2]: Exercises on methods, iteration, symbols, strings, option hashes, and I/O classes
+
+[**W1D3**][w1d3]: Implementing Basic Code Design -- [Mastermind](./w1d3/mastermind.rb), [Hangman](./w1d3/hangman.rb), [Eight Queens](./w1d3/eightqueens.rb)
+
+[**W1D4**][w1d4]: Exercises on blocks and recursion -- [Word Chains](.w1d4/word_chains.rb)
+
+[**W1D5**][w1d5]: Exercises and algorithms on traversing data structures (BFS, DFS) -- [Knight's Travails](./w1d5/knights_travails.rb), [Unbeatable TicTacToe AI](./w1d5/TicTacToeAI-master/skeleton)
+
+### Week 2: Language Basics II, OO Design
+
+[**W2D1**][w2d1]: [Minesweeper](./w2d1/minesweeper.rb)
+
 
 
 

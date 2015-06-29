@@ -1,0 +1,21 @@
+<button class="delete-list-item btn-danger btn-xs">X</button>
+<h5><%= list.escape("title") %></h5>
+ORD: <%= list.escape("ord") %>
+
+<ul class="cards-list sortable"
+  data-list-id="<%= list.id %>"></ul>
+
+<form class="new-card">
+  <input
+    class="clearable"
+    type="text"
+    name="card[title]"
+    placeholder="new card title">
+
+  <textarea
+    class="clearable"
+    name="card[description]"
+    placeholder="card desciption"></textarea>
+
+  <input type="submit" value="submit">
+</form>

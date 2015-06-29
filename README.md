@@ -2,21 +2,21 @@
 
 ### Week 1: Intro to Ruby and OOP, Algorithms
 
-[**W1D1**][w1d1]: Exercises for Ruby's primitive types and common methods - Array, String, Hash, Enumerables
+[**W1D1**][w1d1]: Ruby's primitive types and common methods - Array, String, Hash, Enumerables
 
-[**W1D2**][w1d2]: Exercises on methods, iteration, symbols, strings, option hashes, and I/O classes
+[**W1D2**][w1d2]: Methods, iteration, symbols, strings, option hashes, and I/O classes
 
 [**W1D3**][w1d3]: Implementing basic code design -- [Mastermind](./w1d3/mastermind.rb), [Hangman](./w1d3/hangman.rb), [Eight Queens](./w1d3/eightqueens.rb)
 
-[**W1D4**][w1d4]: Exercises on blocks and recursion -- [Word Chains](./w1d4/word_chains.rb)
+[**W1D4**][w1d4]: Blocks and recursion -- [Word Chains](./w1d4/word_chains.rb)
 
-[**W1D5**][w1d5]: Exercises and algorithms on traversing data structures (BFS, DFS) -- [Knight's Travails](./w1d5/knights_travails.rb), [Unbeatable TicTacToe AI](./w1d5/TicTacToeAI-master/skeleton)
+[**W1D5**][w1d5]: Algorithms and traversing data structures (BFS, DFS) -- [Knight's Travails](./w1d5/knights_travails.rb), [Unbeatable TicTacToe AI](./w1d5/TicTacToeAI-master/skeleton)
 
 ### Week 2: Language Basics II, OO Design
 
 [**W2D1**][w2d1]: [Minesweeper](./w2d1/minesweeper.rb)
 
-**W2D2**: Exercises on class inheritance, polymorphism, and error handling -- [Chess](https://github.com/Conanza/chess)
+**W2D2**: Class inheritance, polymorphism, and error handling -- [Chess](https://github.com/Conanza/chess)
 
 **W2D4**: [Checkers](https://github.com/Conanza/checkers)
 
@@ -48,21 +48,26 @@
 
 [**W4D5**][w4d5]: Polymorphic associations, concerns -- Reddit Clone
 
-## Week 5:
-
 [**W5D1**][w5d1]: Setting up RSpec, testing models, integration testing -- Goal App
+
 **W5D2**: HTTP, webservers, protocols -- [Rails Lite](https://github.com/Conanza/railsLITE/tree/master/skeleton)
 
-[**W5D4**][w5d4]:
+## Week 5: JavaScript!!
 
-[**W5D5**][w5d5]:
+[**W5D4**][w5d4]: Intro to JavaScript and jQuery, closures -- JavaScript version of Week 1 exercises
 
-## Week 6:
+[**W5D5**][w5d5]: Callbacks, event loops, module pattern -- [Towers of Hanoi](./w5d5/towersOfHanoi.js), [TicTacToe](./w5d5/playTicTacToe.js)
+
+## Week 6: More JavaScript
 
 [**W6D1**][w6d1]:
+
 [**W6D2**][w6d2]:
+
 [**W6D3**][w6d3]:
+
 [**W6D4**][w6d4]:
+
 [**W6D5**][w6d5]:
 
 ## Week 7:

@@ -50,7 +50,7 @@
 
 [**W5D1**][w5d1]: Setting up RSpec, testing models, integration testing -- Goal App
 
-**W5D2**: HTTP, webservers, protocols -- [Rails Lite](https://github.com/Conanza/railsLITE/tree/master/skeleton)
+**W5D2**: HTTP, webservers, protocols -- [Rails Lite](https://github.com/Conanza/railsLITE)
 
 ## Week 5: JavaScript!!
 

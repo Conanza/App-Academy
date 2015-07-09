@@ -29,7 +29,7 @@ def common_substrings(string_one, string_two)
 
   short_string.length.times do |i|
     len = longest_substring.length + 1
-    
+
     (len..short_string.length - i).each do |len|
       substring = short_string[i, len]
 
@@ -43,37 +43,75 @@ end
 # Write a function that takes an array of integers and returns their sum.
 # Use recursion.
 def sum_rec(numbers)
+  return 0 if numbers.empty?
 
+  numbers[0] + sum_rec(numbers.drop(1))
 end
 
 # Write a function which returns the first n elements from the fibonnacci sequence, given n.
 def fibs(n)
+  fibs_seq = [0, 1]
 
+  return fibs_seq.take(n) if n <= 2
+
+  (n - 2).times { fibs_seq << fibs_seq[-1] + fibs_seq[-2] }
+
+  fibs_seq
 end
 
 # Write a function that takes a string and returns true if it's a palindrome, false if it's not.
 # Your solution should take less time and memory than rebuilding the string backward and comparing the two.
 def is_palindrome?(string)
+  (0...(string.length / 2)).each do |i|
+    return false if string[i] != string[-1 - i]
+  end
 
+  true
 end
 
 # Implement the Folding Cipher.
 # It folds the alphabet in half and uses the adjacent letter.
 # a <=> z, b <=> y, c <=> x, m <=> n.
 def folding_cipher(string)
+  a_to_z = ("a".."z").to_a
+  cipher = Hash[a_to_z.zip(a_to_z.reverse)]
 
+  string.gsub(/\w/) { |letter| cipher[letter] }
 end
 
 # Write a method that finds all the unique substrings for a word.
 def uniq_subs(string)
+  uniq_subs = {}
 
+  string.length.times do |i|
+    (1..string.length - i).each do |len|
+      subs = string[i, len]
+
+      uniq_subs[subs] = true
+    end
+  end
+
+  uniq_subs.keys
 end
 
 # Given an array of integers (positive and negative) find the largest contiguous subsum (sum of a subarray).
 # You can solve this trivially in O(n**2) time by considering all subarrays.
 # Try to solve it in O(n) time with O(1) memory.
 def lcs(array)
+  max_sum = array.first || 0
 
+  sum = 0
+  array.each do |num|
+    sum += num
+
+    if sum > max_sum
+      max_sum = sum
+    elsif sum < 0
+      sum = 0
+    end
+  end
+
+  max_sum
 end
 
 # Write a function that takes a year (four digit integer) and returns an array with the 10 closest subsequent years that meet the following condition:

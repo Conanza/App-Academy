@@ -231,14 +231,24 @@ end
 # It should run in O(1) time.
 class MaxStack
   def initialize
+    @store = []
   end
 
   def push(value)
+    if @store.empty?
+      @store << [value, value]
+    else
+      @store << [value, [self.max, value].max]
+    end
   end
 
   def pop
+    val, _ = @store.pop
+
+    val
   end
 
   def max
+    @store[-1][1]
   end
 end

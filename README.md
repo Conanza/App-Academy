@@ -1,7 +1,9 @@
 # practice-thy-algorithms
 
 ## what is this?
-***practice-thy-algorithms*** is a series of specs for practicing algorithms in the **Javascript** and **Ruby** programming languages. To get started, just clone the repo.
+***practice-thy-algorithms*** is a series of specs for practicing algorithms in the **Javascript** and **Ruby** programming languages.
+
+Click [here](https://github.com/jaysonvirissimo/practice-thy-algorithms) for the original repo.
 
 ## ruby instructions
 Write your solutions in `algorithms.rb` and run the `rspec` command in the `Ruby` directory.

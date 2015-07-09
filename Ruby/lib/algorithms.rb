@@ -3,7 +3,12 @@
 # Keep repeating until there is only one digit in the result, called the "digital root".
 # Do not use string conversion within your method.
 def digital_root(number)
+  return number if number < 10
 
+  ones_digit = number % 10
+  remainder = number / 10
+
+  digital_root(ones_digit + remainder)
 end
 
 # Write a function that takes a message and an increment amount and outputs the same letters shifted by that amount in the alphabet.

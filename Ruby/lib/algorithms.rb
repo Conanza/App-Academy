@@ -15,12 +15,29 @@ end
 # Assume lowercase and no punctuation.
 # Preserve spaces.
 def caesar_cipher(string, shift)
-
+  string.gsub(/\w/) do |letter|
+    ((letter.ord - "a".ord + shift) % 26 + "a".ord).chr
+  end
 end
 
 # Write a function that takes two strings and returns the longest common substring.
 def common_substrings(string_one, string_two)
+  longest_substring = ""
 
+  short_string = string_one.length > string_two.length ? string_two : string_one
+  long_string = string_one.length <= string_two.length ? string_two : string_one
+
+  short_string.length.times do |i|
+    len = longest_substring.length + 1
+    
+    (len..short_string.length - i).each do |len|
+      substring = short_string[i, len]
+
+      longest_substring = substring if long_string.include?(substring)
+    end
+  end
+
+  return longest_substring
 end
 
 # Write a function that takes an array of integers and returns their sum.

@@ -82,6 +82,9 @@
 
 [**W7D5**][w7d5]: jQuery UI -- Trello Clone
 
+## Extra
+
+[Algorithms][algorithms]
 
 
 
@@ -114,3 +117,4 @@
 [w7d3]: ./w7d3/
 [w7d4]: ./w7d4/
 [w7d5]: ./w7d5/
+[algorithms]: ./algorithms/

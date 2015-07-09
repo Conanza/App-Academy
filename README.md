@@ -84,7 +84,7 @@
 
 ## Extra
 
-[Algorithms][algorithms]
+[**Algorithms**][algorithms]: Algorithms practice
 
 
 

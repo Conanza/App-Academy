@@ -140,7 +140,17 @@ end
 # Time complexity: O(n).
 # Return a set.
 def pair_sum(array, k)
+  results = Set.new
+  numbers = Set.new(array)
 
+  numbers.each do |num|
+    diff = k - num
+    min = [num, diff].min
+    max = [num, diff].max
+    results << [min, max] if numbers.include?(diff)
+  end
+
+  results
 end
 
 # Given a matrix of integers and coordinates of a rectangular region within the matrix.

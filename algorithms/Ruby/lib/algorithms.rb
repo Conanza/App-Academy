@@ -117,7 +117,22 @@ end
 # Write a function that takes a year (four digit integer) and returns an array with the 10 closest subsequent years that meet the following condition:
 # the first two digits summed with the last two digits are equal to the middle two digits.
 def silly_years(year)
+  silly_years = []
 
+  until silly_years.length == 10
+    silly_years << year if is_silly_year?(year)
+    year += 1
+  end
+
+  silly_years
+end
+
+def is_silly_year?(year)
+  first_two = year.to_s[0..1].to_i
+  last_two = year.to_s[2..3].to_i
+  mid = year.to_s[1..2].to_i
+
+  first_two + last_two == mid
 end
 
 # Given an array of integers, return all pairs that sum up to a specified value k.

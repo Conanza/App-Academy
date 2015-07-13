@@ -157,22 +157,63 @@ end
 # Find the sum of numbers falling inside the rectangle.
 # Time complexity: O(number of rows * number of columns).
 def matrix_region_sum(matrix, top_left_coords, bottom_right_coords)
+  x_max = bottom_right_coords[1]
+  x_min = top_left_coords[1]
+  y_max = bottom_right_coords[0]
+  y_min = top_left_coords[0]
+  sum = 0
 
+  (x_min..x_max).each do |x_coord|
+    (y_min..y_max).each do |y_coord|
+      sum += matrix[y_coord][x_coord]
+    end
+  end
+
+  sum
 end
 
 # Implement Merge Sort (Hint: this typically involves a helper function)
 def merge_sort(array)
+  return array if array.length <= 1
 
+  mid = array.length / 2
+  left = array[0...mid]
+  right = array[mid..-1]
+
+  merge(merge_sort(left), merge_sort(right))
 end
 
 def merge(left, right)
+  merged_array = []
 
+  until left.empty? || right.empty?
+    if left.first > right.first
+      merged_array << right.shift
+    else
+      merged_array << left.shift
+    end
+  end
+
+  merged_array.concat(left).concat(right)
 end
 
 # Implement binary search.
 # Return nil if the target isn't found.
 def binary_search(array, target)
+  return nil if array.empty?
 
+  mid = array.length / 2
+  test = array[mid]
+
+  if test == target
+    return mid
+  elsif test > target
+    return binary_search(array.take(mid - 1), target)
+  else
+    result = binary_search(array.drop(mid + 1), target)
+
+    return result.nil? ? nil : 1 + mid + result
+  end
 end
 
 # Given a list of numbers in an array, replace all the numbers

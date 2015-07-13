@@ -220,7 +220,23 @@ end
 # with the product of all other numbers. Do this in O(n) time without
 # using division.
 def productify(array)
+  products = [1] * array.length
 
+  current_product = 1
+  products.each_index do |i|
+    products[i] *= current_product
+
+    current_product *= array[i]
+  end
+
+  current_product = array.last
+  (array.length - 2).downto(0) do |j|
+    products[j] *= current_product
+
+    current_product *= array[j]
+  end
+
+  products
 end
 
 # Write a function that takes an array and returns all of its subsets.

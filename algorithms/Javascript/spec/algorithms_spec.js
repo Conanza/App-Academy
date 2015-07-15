@@ -13,6 +13,10 @@ describe("caesarCipher", function() {
     expect(Algorithms.caesarCipher('hello', 4)).toBe('lipps');
   });
 
+  it("'hello world' should return 'lipps asvqh'", function() {
+    expect(Algorithms.caesarCipher('hello world', 4)).toBe('lipps asvph');
+  });
+
   it("'abc' should return 'abc'", function() {
     expect(Algorithms.caesarCipher('abc', 26)).toBe('abc');
   });

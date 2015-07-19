@@ -49,18 +49,39 @@ Algorithms.commonSubstrings = function (stringOne, stringTwo) {
 // Write a function that takes an array of integers and returns their sum.
 // Use recursion.
 Algorithms.sumRec = function (numbers) {
+  if (numbers.length === 0) {
+    return 0;
+  }
 
+  return numbers[0] + Algorithms.sumRec(numbers.slice(1));
 };
 
 // Write a function which returns the first n elements from the fibonnacci sequence, given n.
 Algorithms.fibs = function (number) {
+  var fibs = [], i;
+  for (i = 0; fibs.length < number; i++) {
+    if (i === 0) {
+      fibs.push(0);
+    } else if (i === 1) {
+      fibs.push(1);
+    } else {
+      fibs.push(fibs[fibs.length - 1] + fibs[fibs.length - 2]);
+    }
+  }
 
+  return fibs;
 };
 
 // Write a function that takes a string and returns true if it's a palindrome, false if it's not.
 // Your solution should take less time and memory than rebuilding the string backward and comparing the two.
 Algorithms.isPalindrome = function (string) {
+  for (var i = 0; i < Math.floor(string.length / 2); i++) {
+    if (string[i] !== string[string.length - 1 - i]) {
+      return false;
+    }
+  }
 
+  return true;
 };
 
 // Implement the Folding Cipher.
@@ -80,7 +101,25 @@ Algorithms.uniqSubs = function (string) {
 // You can solve this trivially in O(n**2) time by considering all subarrays.
 // Try to solve it in O(n) time with O(1) memory.
 Algorithms.lcs = function (array) {
+  var maxSum;
+  if (array.length === 0) {
+    maxSum = 0;
+  } else {
+    maxSum = array[0];
+  }
 
+  var i, currentSum = maxSum;
+  for (i = 1; i < array.length; i++) {
+    currentSum += array[i];
+
+    if (currentSum > maxSum) {
+      maxSum = currentSum;
+    } else if (currentSum < 0) {
+      currentSum = 0;
+    }
+  }
+
+  return maxSum;
 };
 
 // Write a function that takes a year (four digit integer) and returns an array with the 10 closest subsequent years that meet the following condition:

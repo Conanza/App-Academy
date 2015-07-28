@@ -299,7 +299,23 @@ end
 # The order of non-zero elements does not matter.
 # Try to accomplish this in O(n) time and O(1) space.
 def move_zeros(array)
+  front_idx = 0
+  back_idx = array.length - 1
 
+  until front_idx >= back_idx
+    if array[front_idx].zero?
+      if array[back_idx] != 0
+        array[front_idx] = array[back_idx]
+        array[back_idx] = 0
+      end
+
+      back_idx -= 1
+    else
+      front_idx += 1
+    end
+  end
+
+  array
 end
 
 # Implement the 'look and say' function.

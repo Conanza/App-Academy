@@ -85,7 +85,7 @@
 ## Extra
 
 [**Algorithms**][algorithms]: Algorithms practice
-
+[**Data Structures**][data-structures]: Implementing Data Structures from Scratch
 
 
 [w1d1]: ./w1d1/
@@ -118,3 +118,4 @@
 [w7d4]: ./w7d4/
 [w7d5]: ./w7d5/
 [algorithms]: ./algorithms/
+[data-structures]: ./data-structures/

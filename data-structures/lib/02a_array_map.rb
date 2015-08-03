@@ -3,6 +3,16 @@ class ArrayMap
     @store = []
   end
 
+  def delete(k)
+    index = nil
+    @store.each_with_index do |kvpair, i|
+      next unless kvpair[0] == k
+      index = i
+    end
+
+    @store.delete_at(index)
+  end
+
   # O(n)
   def set(k, v)
     @store.each do |kvpair|

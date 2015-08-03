@@ -10,10 +10,8 @@ class ArrayHashMap
   def delete(k)
     return nil unless has_key?(k)
 
-    @buckets[k.hash % @buckets.length].delete(k)
     @count -= 1
-    
-    true
+    @buckets[k.hash % @buckets.length].delete(k)
   end
 
   def get(k)

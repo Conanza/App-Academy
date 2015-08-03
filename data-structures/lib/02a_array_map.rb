@@ -4,13 +4,14 @@ class ArrayMap
   end
 
   def delete(k)
-    index = nil
     @store.each_with_index do |kvpair, i|
-      next unless kvpair[0] == k
-      index = i
+      if kvpair[0] == k
+        @store.delete_at(i)
+        return true
+      end
     end
 
-    @store.delete_at(index)
+    nil
   end
 
   # O(n)

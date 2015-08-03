@@ -1,4 +1,4 @@
-require "dynamic_array"
+require "01a_dynamic_array"
 
 describe DynamicArray do
   before(:each) do

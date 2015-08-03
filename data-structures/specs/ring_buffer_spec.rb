@@ -1,4 +1,4 @@
-require "ring_buffer"
+require "01b_ring_buffer"
 
 describe RingBuffer do
   before(:each) do

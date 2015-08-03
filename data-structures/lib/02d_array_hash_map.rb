@@ -7,6 +7,7 @@ class ArrayHashMap
     @count = 0
   end
 
+  # O(1) AVG
   def delete(k)
     return nil unless has_key?(k)
 
@@ -14,11 +15,13 @@ class ArrayHashMap
     @buckets[k.hash % @buckets.length].delete(k)
   end
 
+  # O(1) AVG
   def get(k)
     @buckets[k.hash % @buckets.length].get(k)
   end
   alias_method :[], :get
 
+  # O(1) amortized
   def set(k, v)
     if has_key?(k)
       @buckets[k.hash % @buckets.length].set(k, v)
@@ -34,6 +37,7 @@ class ArrayHashMap
   end
   alias_method :[]=, :set
 
+  # O(1) AVG
   def has_key?(k)
     @buckets[k.hash % buckets.length].has_key?(k)
   end
@@ -43,6 +47,7 @@ class ArrayHashMap
 
   attr_reader :buckets, :count, :size
 
+  # O(n)
   def resize!
     @size *= 2
     new_buckets = Array.new(@size) { ArrayMap.new }

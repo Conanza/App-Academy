@@ -1,6 +1,6 @@
 require_relative "03a_doubly_linked_list"
 
-# LLs are good for LRU Caches
+# LLs are also good for LRU Caches
 # If we couldn't assume hashmap entries were ordered,
 # we could use an LL to track LRU items
 
@@ -23,6 +23,7 @@ class LinkedListLRUCache
       return @linked_list.push(link.value).value[1]
     end
 
+    # remove the item at the front of the list, delete link from hash
     # not quite right
     if @max_size == @links_hash.length
       link_kv = @linked_list.shift

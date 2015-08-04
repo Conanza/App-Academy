@@ -22,6 +22,7 @@ class SentinelLink < Link
   end
 end
 
+# LLs are slow to index into normally, but they're good for end-to-end scans like #select!
 class DoublyLinkedList
   def initialize
     @start_sentinel = SentinelLink.new

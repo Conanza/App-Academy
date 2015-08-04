@@ -5,7 +5,7 @@ class LRUCache
   def initialize(max_size, &prc)
     @store = {}
     @max_size = max_size
-    @prc = &prc
+    @prc = prc
   end
 
   def [](key)

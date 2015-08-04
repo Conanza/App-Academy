@@ -4,11 +4,21 @@ class Link
     @value = val
     @next, @prev = nil, nil
   end
+
+  def remove
+    self.prev.next = self.next
+    self.next.prev = self.prev
+    self.next, self.prev = nil, nil
+  end
 end
 
 class SentinelLink < Link
   def initialize
     super(nil)
+  end
+
+  def remove
+    raise "can't remove sentinel links"
   end
 end
 
@@ -24,14 +34,6 @@ class DoublyLinkedList
     @start_sentinel.next == @end_sentinel
   end
 
-  # O(n)
-  def get(value)
-  end
-
-  # O(n)
-  def set(value)
-  end
-
   # O(1)
   def push(value)
     new_link = Link.new(value)
@@ -42,7 +44,7 @@ class DoublyLinkedList
     @end_sentinel.prev.next = new_link
     @end_sentinel.prev = new_link
 
-    self
+    new_link
   end
 
   # O(1)
@@ -78,7 +80,7 @@ class DoublyLinkedList
     @start_sentinel.next.prev = new_link
     @start_sentinel.next = new_link
 
-    self
+    new_link
   end
 
   def inspect

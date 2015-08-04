@@ -7,8 +7,8 @@
 * [ ] Set
 
 ## Data Structures
-* [ ] Dynamic Array
-* [ ] Ring Buffer
-* [ ] Hash Map
+* [x] Dynamic Array
+* [x] Ring Buffer
+* [x] Hash Map
 * [ ] Heap
-* [ ] Linked List
+* [x] Linked List

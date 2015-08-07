@@ -13,13 +13,18 @@ class BinHeapPriorityQueue
     @store[0]
   end
 
+  # the time complexity of heapifying is O(d), where d is the depth of the tree
+  # if n is the # of vertices
+  # we know n = 2^d - 1
+  # TC: O(log n)
   def push(val, priority)
     @store << [val, priority]
-    heapify_up(@store, @store.length - 1)
+    heapify_up(@store, length - 1)
 
     self
   end
 
+  # TC: O(log n)
   def shift
     raise "nothing in queue" if length == 0
     val = @store[0][0]

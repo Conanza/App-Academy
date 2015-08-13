@@ -1,6 +1,7 @@
 require_relative "05c_binary_heap_priority_queue"
 
 class Array
+  # O(n logn)
   def heap_sort
     binheap = BinHeapPriorityQueue.new
     sorted_arr = []

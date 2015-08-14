@@ -82,7 +82,7 @@
 
 [**W7D5**][w7d5]: jQuery UI -- Trello Clone
 
-## Extra
+## Independent Study
 
 [**Algorithms**][algorithms]: Algorithms practice
 

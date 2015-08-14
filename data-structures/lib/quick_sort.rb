@@ -43,3 +43,10 @@ def partition(arr)
 
   pivot_idx
 end
+
+def qsort_in_place()
+
+end
+
+def partition_in_place()
+end

@@ -1,7 +1,10 @@
 require_relative "05c_binary_heap_priority_queue"
 
 class Array
-  # O(n logn)
+  # TC: O(n logn)
+  # SC: can be done in place for O(n)
+  # Consistent performance
+  # Good when low on memory
   def heap_sort
     binheap = BinHeapPriorityQueue.new
     sorted_arr = []

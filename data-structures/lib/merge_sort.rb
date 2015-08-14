@@ -1,3 +1,7 @@
+# TC: O(nlogn)
+# SC: O(n)
+# Consistent performance
+# Good if we have space for a copy our array
 def merge_sort(array)
   return array if array.length <= 1
 

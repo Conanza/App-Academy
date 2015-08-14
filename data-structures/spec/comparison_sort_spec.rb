@@ -1,5 +1,6 @@
 require "heap_sort"
 require "merge_sort"
+require "quick_sort"
 
 describe "comparison sorts" do
   before(:each) do
@@ -23,6 +24,20 @@ describe "comparison sorts" do
 
     it "should sort an array" do
       expect(merge_sort(@arr)).to eq(@arr.sort)
+    end
+  end
+
+  describe "quick sorts" do
+    describe "#bad_qsort" do
+      it "should sort an array" do
+        expect(bad_qsort(@arr)).to eq(@arr.sort)
+      end
+    end
+
+    describe "#qsort using partitioning" do
+      it "should sort an array" do
+        expect(qsort(@arr)).to eq(@arr.sort)
+      end
     end
   end
 end

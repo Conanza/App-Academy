@@ -1,8 +1,8 @@
 require_relative "05c_binary_heap_priority_queue"
 
 class Array
-  # TC: O(n logn)
-  # SC: can be done in place for O(n)
+  # TC: O(nlogn)
+  # SC: can be done in place for O(1)
   # Consistent performance
   # Good when low on memory
   def heap_sort

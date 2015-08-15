@@ -44,9 +44,31 @@ def partition(arr)
   pivot_idx
 end
 
-def qsort_in_place()
+# TC: same as before, AVG O(nlogn)
+# SC: O(logn)
+def qsort!(arr, start = 0, len = arr.length)
+  return arr if len <= 1
 
+  pivot_idx = partition!(arr, start, len)
+  qsort!(arr, start, pivot_idx - start)
+  qsort!(arr, pivot_idx + 1, (start + len) - (pivot_idx + 1))
+
+  arr
 end
 
-def partition_in_place()
+def partition!(arr, start, len)
+  pivot_idx, pivot = start, arr[start]
+
+  ((start + 1)...(start + len)).each do |idx|
+    value = arr[idx]
+    next if value >= pivot
+
+    arr[idx] = arr[pivot_idx + 1]
+    arr[pivot_idx + 1] = pivot
+    arr[pivot_idx] = value
+
+    pivot_idx += 1
+  end
+
+  pivot_idx
 end

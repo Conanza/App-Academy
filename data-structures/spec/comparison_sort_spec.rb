@@ -40,9 +40,9 @@ describe "comparison sorts" do
       end
     end
 
-    describe "#qsort_in_place" do
+    describe "#qsort!" do
       it "should sort an array" do
-        expect(qsort_in_place(@arr)).to eq(@arr.sort)
+        expect(qsort!(@arr)).to eq(@arr.sort)
       end
     end
   end

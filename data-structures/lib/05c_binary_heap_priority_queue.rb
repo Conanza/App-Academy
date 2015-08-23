@@ -61,10 +61,10 @@ class BinHeapPriorityQueue
     end
 
     swap_idx = if children.length == 1
-      c1_idx
-    else
-      @prc.call(array[c1_idx][1], array[c2_idx][1]) <= 0 ? c1_idx : c2_idx
-    end
+                 c1_idx
+               else
+                 @prc.call(array[c1_idx][1], array[c2_idx][1]) <= 0 ? c1_idx : c2_idx
+               end
 
     array[par_idx], array[swap_idx] = array[swap_idx], array[par_idx]
     heapify_down(array, swap_idx)
